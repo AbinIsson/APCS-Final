@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+
+public class Answers
+{
+	private String correct;
+	private String choiceB;
+	private String choiceC;
+	private String choiceD;
+	
+	String[] answerChoices = new String[4];
+	ArrayList<AnswerArrays> arr = new ArrayList<AnswerArrays>();
+	
+	public Answers(String str)
+	{
+		answerChoices  = str.split(" - "); //Make an array with 4 answer choices
+		
+		
+		for(int i = 0; i < answerChoices.length; i++) //Now put all choices into an ArrayList
+		{
+			if(i == 0)
+				correct = answerChoices[i];
+			if(i == 1)
+				choiceB = answerChoices[i];
+			if(i == 2)
+				choiceC = answerChoices[i];
+			if(i == 3)
+				choiceD = answerChoices[i];
+			
+		}
+		arr.add(new AnswerArrays(correct, choiceB, choiceC, choiceD)); //making the ArrayList with objects
+	}
+	
+	/*public String whatQuestion(int question)
+	{
+		
+	}*/
+	
+	public String toString()
+	{
+		
+	}
+}
