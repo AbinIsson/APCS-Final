@@ -2,6 +2,7 @@
 public class CalculateScore
 {
 	private int numCorrect;
+	private int counter;
 	
 	public CalculateScore(int correct)
 	{
