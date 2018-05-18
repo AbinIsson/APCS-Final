@@ -1,0 +1,52 @@
+
+public class AnswerArrays
+{
+
+	private String correct;
+	private String choiceB;
+	private String choiceC;
+	private String choiceD;
+	
+	public AnswerArrays()
+	{
+		correct = "";
+		choiceB = "";
+		choiceC = "";
+		choiceD = "";
+	}
+	public AnswerArrays(String correct, String cB, String cC, String cD)
+	{
+		this.correct = correct;
+		choiceB = cB;
+		choiceC = cC;
+		choiceD = cD;
+	}
+	
+	public String getCorrect()
+	{
+		return correct;
+	}
+	public String getChoiceB()
+	{
+		return choiceB;
+	}
+	public String getChoiceC()
+	{
+		return choiceC;
+	}
+	public String getChoiceD()
+	{
+		return choiceD;
+	}
+	
+	public String getAllChoices()
+	{
+		return "";
+	}
+	
+	@Override
+	public String toString()
+	{
+		return correct;
+	}
+}
