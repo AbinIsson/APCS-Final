@@ -19,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -84,6 +85,17 @@ public class Background extends Application {
         btn.setLayoutY(200);
         root.getChildren().add(btn);
         
+        Basketball basket = new Basketball();
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event)
+            {
+            	Stage primaryStage = new Stage();
+                basket.start(primaryStage);
+                Stage stage = (Stage) btn.getScene().getWindow();
+                stage.close();
+            }
+        });
+        
       //Play Song
         for(int i = 0; i < 10; i ++)
         playAudio();
@@ -100,11 +112,34 @@ public class Background extends Application {
     
     private void playAudio()
     {
-    	AudioClip song = new AudioClip(this.getClass().getResource("Blindside - TSA State Edition.mp3").toString());
+    	/*AudioClip song = new AudioClip(this.getClass().getResource("Blindside - TSA State Edition.mp3").toString());
     	song.setCycleCount(AudioClip.INDEFINITE);
-    	song.play();
+    	song.play();*/
     		
+    	MediaPlayer song = new MediaPlayer(((new Media(getClass().getResource("Blindside - TSA State Edition.mp3").toString()))));
+    	/*song.setMute(true);
+    	MediaView mediaView = new MediaView(song);
+    	  mediaView.visibleProperty().bind(getSkinnable().showMediaViewBackgroundProperty());
+    	 getSkinnable().showMediaViewBackgroundProperty().addListener(it -> {
+    	        if (getSkinnable().isShowMediaViewBackground()) {
+
+    	            
+    	             * Implementing our own infinite loop support.
+    	             * The built-in cycle count support seems to be buggy.
+    	             
+    	            player.setOnEndOfMedia(() -> {
+    	                player.seek(Duration.ZERO);
+    	                player.play();
+    	            });
+    	            player.play();
+    	        } else {
+    	            player.stop();
+    	        }
+    	    });*/
     	
+    	//song.autoPlayProperty();
+    	song.setCycleCount(song.INDEFINITE);
+    	song.play();
  
     }
    
