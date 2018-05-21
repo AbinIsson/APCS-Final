@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class AnswerArrays
 {
@@ -7,12 +8,28 @@ public class AnswerArrays
 	private String choiceC;
 	private String choiceD;
 	
-	public AnswerArrays()
+	String[] answerChoices = new String[4];
+	ArrayList<AnswerArrays> arr = new ArrayList<AnswerArrays>();
+	
+	public AnswerArrays(String str)
 	{
-		correct = "";
-		choiceB = "";
-		choiceC = "";
-		choiceD = "";
+		answerChoices  = str.split(" - "); //Make an array with 4 answer choices
+		
+        
+		for(int i = 0; i < answerChoices.length; i++) //Now put all choices into an ArrayList
+		{
+			if(i == 0)
+				correct = answerChoices[i];
+			if(i == 1)
+				choiceB = answerChoices[i];
+			if(i == 2)
+				choiceC = answerChoices[i];
+			if(i == 3)
+				choiceD = answerChoices[i];
+			
+		}
+		
+		arr.add(new AnswerArrays(correct, choiceB, choiceC, choiceD)); //making the ArrayList with objects
 	}
 	public AnswerArrays(String correct, String cB, String cC, String cD)
 	{
@@ -47,6 +64,6 @@ public class AnswerArrays
 	@Override
 	public String toString()
 	{
-		return correct;
+		return choiceB;
 	}
 }
