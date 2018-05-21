@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+
+public class Questions
+{
+	private String q;
+	
+	ArrayList<String> question = new ArrayList<String>();
+	
+	public Questions(String str)
+	{
+		q = str;
+		question.add(str);
+	}
+	
+	public String getQuestion()
+	{
+		return q;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return q;
+	}
+}
