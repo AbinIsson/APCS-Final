@@ -1,6 +1,8 @@
+import java.io.File;
 import java.io.FileInputStream;
 
 import javax.print.DocFlavor.URL;
+
 
 import sun.audio.*;
 import javafx.application.Application;
@@ -39,14 +41,6 @@ public class Background extends Application {
     {
     
         StackPane root = new StackPane();
-        
-     //   btn.setOnAction(new EventHandler<ActionEvent>() {
- 
-           /* @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Start Game!");
-            }*/
-       // });
         
       //Basic set up of Start Page
       
@@ -97,36 +91,26 @@ public class Background extends Application {
         });
         
       //Play Song
-      //  for(int i = 0; i < 10; i ++)
+
         playAudio();
         
-       
-        
-        
-        
-       /* ImageView iv = new ImageView();
-        iv.setImage(image);
-        
-       root.getChildren().add(iv);*/
+
         primaryStage.show();
     
     }
     
     private void playAudio()
     {
-    	/*AudioClip song = new AudioClip(this.getClass().getResource("Blindside - TSA State Edition.mp3").toString());
+    	File path = new File("src/Blindside - TSA State Edition.mp3");
+    	Media m = new Media(path.toURI().toString());
+    	MediaPlayer song = new MediaPlayer(m);
+    	MediaView mv = new MediaView(song);
     	
-    	song.setCycleCount(AudioClip.INDEFINITE);
-    	song.play();*/
+    	mv.setMediaPlayer(song);
     	
-    	//Media m = new Media("file:/c:/BallOnStites/")
-    	MediaPlayer song = new MediaPlayer(((new Media(getClass().getResource("Blindside - TSA State Edition.mp3").toString()))));
-    	
-    
     	song.autoPlayProperty();
-    	song.setCycleCount(song.INDEFINITE);
+    	song.setCycleCount(MediaPlayer.INDEFINITE);
     	song.play();
- 
     }
    
 }
