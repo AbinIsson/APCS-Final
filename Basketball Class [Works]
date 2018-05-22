@@ -27,10 +27,8 @@ import javafx.util.Duration;
 import sun.audio.AudioData;
 import sun.audio.AudioStream;
  
-public class Basketball extends Background {
-  /*  public static void main(String[] args) {
-        launch(args);
-    }*/
+public class Basketball extends Background 
+{
     
     @Override
     
@@ -39,64 +37,26 @@ public class Basketball extends Background {
     
         StackPane root = new StackPane();
         
-     //   btn.setOnAction(new EventHandler<ActionEvent>() {
- 
-           /* @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Start Game!");
-            }*/
-       // });
-        
       //Basic set up of Start Page
       
-        primaryStage.setScene(new Scene(root, 900, 900));
+        primaryStage.setScene(new Scene(root, 1700, 1000));
         primaryStage.show();
         
-        Canvas canvas = new Canvas( 900, 900 );
+        Canvas canvas = new Canvas( 1700, 1000 );
         root.getChildren().add( canvas );
              
         GraphicsContext gc = canvas.getGraphicsContext2D();
       
         
         //Background Image
-        Image ball = new Image("file:Basketball Court.jpg", 900, 900, false, false);
+        Image ball = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
         gc.drawImage(ball, 0, 0);
         
        
-       
-        
-        
         //Disable maximize option on program
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         
     
-        
-      //Play Song
-        for(int i = 0; i < 10; i ++)
-        playAudio();
-        
-        
-        
-       /* ImageView iv = new ImageView();
-        iv.setImage(image);
-        
-       root.getChildren().add(iv);*/
-        primaryStage.show();
-    
-    }
-    
-    private void playAudio()
-    {
-    	File path = new File("src/Blindside - TSA State Edition.mp3");
-    	Media m = new Media(path.toURI().toString());
-    	MediaPlayer song = new MediaPlayer(m);
-    	MediaView mv = new MediaView(song);
-    	
-    	mv.setMediaPlayer(song);
-    	
-    	song.autoPlayProperty();
-    	song.setCycleCount(MediaPlayer.INDEFINITE);
-    	song.play();
     }
    
 }
