@@ -97,8 +97,10 @@ public class Background extends Application {
         });
         
       //Play Song
-        for(int i = 0; i < 10; i ++)
+      //  for(int i = 0; i < 10; i ++)
         playAudio();
+        
+       
         
         
         
@@ -113,31 +115,15 @@ public class Background extends Application {
     private void playAudio()
     {
     	/*AudioClip song = new AudioClip(this.getClass().getResource("Blindside - TSA State Edition.mp3").toString());
+    	
     	song.setCycleCount(AudioClip.INDEFINITE);
     	song.play();*/
-    		
-    	MediaPlayer song = new MediaPlayer(((new Media(getClass().getResource("Blindside - TSA State Edition.mp3").toString()))));
-    	/*song.setMute(true);
-    	MediaView mediaView = new MediaView(song);
-    	  mediaView.visibleProperty().bind(getSkinnable().showMediaViewBackgroundProperty());
-    	 getSkinnable().showMediaViewBackgroundProperty().addListener(it -> {
-    	        if (getSkinnable().isShowMediaViewBackground()) {
-
-    	            
-    	             * Implementing our own infinite loop support.
-    	             * The built-in cycle count support seems to be buggy.
-    	             
-    	            player.setOnEndOfMedia(() -> {
-    	                player.seek(Duration.ZERO);
-    	                player.play();
-    	            });
-    	            player.play();
-    	        } else {
-    	            player.stop();
-    	        }
-    	    });*/
     	
-    	//song.autoPlayProperty();
+    	//Media m = new Media("file:/c:/BallOnStites/")
+    	MediaPlayer song = new MediaPlayer(((new Media(getClass().getResource("Blindside - TSA State Edition.mp3").toString()))));
+    	
+    
+    	song.autoPlayProperty();
     	song.setCycleCount(song.INDEFINITE);
     	song.play();
  
