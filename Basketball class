@@ -87,19 +87,16 @@ public class Basketball extends Background {
     
     private void playAudio()
     {
-    	/*AudioClip song = new AudioClip(this.getClass().getResource("Blindside - TSA State Edition.mp3").toString());
-    	song.setCycleCount(AudioClip.INDEFINITE);
-    	song.play();*/
-    		
-    /*	MediaPlayer song = new MediaPlayer(((new Media(getClass().getResource("Blindside - TSA State Edition.mp3").toString()))));
-    	song.setOnEndOfMedia(new Runnable()
-    	{
-    		public void run()
-    		{
-    			song.seek(Duration.ZERO);
-    		}
-    	});
-    	song.play();*/
+    	File path = new File("src/Blindside - TSA State Edition.mp3");
+    	Media m = new Media(path.toURI().toString());
+    	MediaPlayer song = new MediaPlayer(m);
+    	MediaView mv = new MediaView(song);
+    	
+    	mv.setMediaPlayer(song);
+    	
+    	song.autoPlayProperty();
+    	song.setCycleCount(MediaPlayer.INDEFINITE);
+    	song.play();
     }
    
 }
