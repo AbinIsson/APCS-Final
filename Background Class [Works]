@@ -65,6 +65,13 @@ public class Background extends Application {
         btn.setLayoutY(200);
         root.getChildren().add(btn);
         
+        // Attempt at a new start button
+         /*FileInputStream input = new FileInputStream("src/Button.png");
+        Image image = new Image(input);
+        ImageView imageView = new ImageView(image);
+
+        Button btn = new Button("Home", imageView);*/
+        
         Basketball basket = new Basketball();
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent event)
