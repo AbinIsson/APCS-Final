@@ -1,9 +1,19 @@
+import java.util.TimerTask;
+
+import com.sun.glass.ui.Timer;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
  
 public class Basketball extends Background 
 {
@@ -15,6 +25,7 @@ public class Basketball extends Background
     
         StackPane root = new StackPane();
         
+        Background back = new Background();
       //Basic set up of Start Page
       
         primaryStage.setScene(new Scene(root, 1700, 1000));
@@ -30,11 +41,180 @@ public class Basketball extends Background
         Image ball = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
         gc.drawImage(ball, 0, 0);
         
+        
+        //Answer Choices Displayed
+       
+        //A
+        primaryStage.setTitle("Ball On Stites");
+        Button btnA = new Button();
+        btnA.setText("Answer Choice A");
+        btnA.setTranslateX(-400);
+        btnA.setTranslateY(318);
+        btnA.setMinSize(900,119);
+        
+        btnA.setOnKeyPressed(
+        		event -> {
+        			switch(event.getCode())
+        			{
+        				case Q  : 
+        				{
+        					System.out.println("Pressed");	
+        					break;
+        				}
+        				case U : 
+        				{
+	        				System.out.println("Pressed");
+	        				break;
+	        			}
+        			
+        		
+        			}
+        		}
+        	);
+        
+        Directions instructions = new Directions();
+        btnA.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event)
+            {
+            	/*Stage primaryStage = new Stage();
+                instructions.start(primaryStage);
+                Stage stage = (Stage) btnA.getScene().getWindow();*/
+                System.out.println("Pressed");
+               // stage.close();
+            }
+        });
+        root.getChildren().add(btnA);
+      
+        //B
+        Button btnB = new Button();
+        btnB.setText("Answer Choice B");
+        btnB.setTranslateX(-400);
+        btnB.setTranslateY(439);
+        btnB.setMinSize(900,119);
+        
+        btnB.setOnKeyPressed(
+        		event -> {
+        			switch(event.getCode())
+        			{
+        				case I : 
+        				{
+        					System.out.println("Pressed2");	
+        					break;
+        				}
+        				case W : 
+        				{
+	        				System.out.println("Pressed2");
+	        				break;
+	        			}
+        			
+        		
+        			}
+        		}
+        	);
+      
+      
+        btnB.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event)
+            {
+            	/*Stage primaryStage = new Stage();
+                instructions.start(primaryStage);
+                Stage stage = (Stage) btnB.getScene().getWindow();
+                stage.close();*/
+            	
+            	System.out.println("Pressed 2");
+            }
+        });
+        
+        root.getChildren().add(btnB);
+        
+      //C
+        Button btnC = new Button();
+        btnC.setText("Answer Choice C");
+        btnC.setTranslateX(500);
+        btnC.setTranslateY(318);
+        btnC.setMinSize(900,119);
+        
+        btnC.setOnKeyPressed(
+        		event -> {
+        			switch(event.getCode())
+        			{
+        				case E : 
+        				{
+        					System.out.println("Pressed3");	
+        					break;
+        				}
+        				case O : 
+        				{
+	        				System.out.println("Pressed3");
+	        				break;
+	        			}
+        			
+        		
+        			}
+        		}
+        	);
+        
+       
+        btnC.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event)
+            {
+            	/*Stage primaryStage = new Stage();
+                instructions.start(primaryStage);
+                Stage stage = (Stage) btnC.getScene().getWindow();
+                stage.close();*/
+            	System.out.println("Pressed3");
+            }
+        });
+      
+        root.getChildren().add(btnC);
+        
+      //D
+        Button btnD = new Button();
+        btnD.setText("Answer Choice D");
+        btnD.setTranslateX(500);
+        btnD.setTranslateY(439);
+        btnD.setMinSize(900,119);
+        
+        btnD.setOnKeyPressed(
+        		event -> {
+        			switch(event.getCode())
+        			{
+        				case R : 
+        				{
+        					System.out.println("Pressed3");	
+        					break;
+        				}
+        				case P : 
+        				{
+	        				System.out.println("Pressed3");
+	        				break;
+	        			}
+        			
+        		
+        			}
+        		}
+        	);
+      
+        
+            btnD.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event)
+            {
+            	/*Stage primaryStage = new Stage();
+                instructions.start(primaryStage);
+                Stage stage = (Stage) btn.getScene().getWindow();
+                stage.close();*/
+            	System.out.println("Pressed4");
+            }
+        });
+        root.getChildren().add(btnD);
        
         //Disable maximize option on program
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         
-    
+       
+        
     }
+   
+   
    
 }
