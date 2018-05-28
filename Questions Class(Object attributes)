@@ -6,10 +6,13 @@ public class Questions
 	
 	static ArrayList<String> question = new ArrayList<String>();
 	
+	private static int num;
+	
 	public Questions(String str)
 	{
 		q = str;
 		question.add(str);
+		num = (int)(Math.random()*29 + 0);
 	}
 	
 	public static String getQuestion()
@@ -17,21 +20,30 @@ public class Questions
 		return q;
 	}
 	
+	public static int getQuestionNumber()
+	{
+		 
+		 return num;
+	}
 	public static String getRandomQuestion()
 	{
 		
-		int num = (int)(Math.random()*29 + 0);
-		String val = "";
+		
+/*		String val = "";
 		for(int i = 0; i< 30; i++)
 		{
-			if(question.get(i) == question.get(i))
+			//Would this if statement work?
+			if(question.get(i) == question.get(num))
 			{
 				question.remove(i);
 			}
 			val += question.remove(num) + "\n";
 			return val;
 		}
-		return "";
+		return "";*/
+		int q = (int) (Math.random()*29 + 0); 
+		num = q;
+		return question.remove(q); 
 	}
 	
 	
