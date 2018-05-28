@@ -68,7 +68,7 @@ public class Basketball extends Background
     
     public void start(Stage primaryStage)  
     {
-    	//Animation  
+    	//Animation  - Gets the ball image and sets location
     	ImageView ball = new ImageView();
 	     ball.setImage(new Image("file:Ball.png",100, 100, false, false));
 	     ball.setX(500);
@@ -77,27 +77,27 @@ public class Basketball extends Background
 	   //Setting the path of the animation
 	   PathElement[] path = 
 		   {
-				   new MoveTo(525, 770),
+				   new MoveTo(525, 770), //Initial start
 				   
-				   new QuadCurveTo(275,30,550,300),
+				   new QuadCurveTo(275,30,550,300), //Curve thing
 				   /*new LineTo(300, 400),
 				   new LineTo(500,200),
 				   new LineTo(100,200),
 				   new LineTo(100,350),*/
 				   
-				   new ClosePath()
+				   new ClosePath() //Finished the path back to the start
 		   };
 
 	   //Adding location of the path for animation
 	   Path road = new Path();
-	   road.setStroke(Color.TRANSPARENT);
+	   road.setStroke(Color.TRANSPARENT); //Making the color invisible
 	   road.getElements().addAll(path);
 
 	   PathTransition anim = new PathTransition();
 	      anim.setNode(ball);
 	      anim.setPath(road);
 	      anim.setDuration(new Duration(1500));
-	      //anim.setCycleCount(Timeline.INDEFINITE);
+	      anim.setCycleCount(Timeline.INDEFINITE);
 	      
 	      
 	      
