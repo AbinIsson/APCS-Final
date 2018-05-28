@@ -36,30 +36,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
 import javafx.animation.PathTransition.OrientationType;
-import javafx.animation.Timeline;
-
 import javafx.application.Application;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import javafx.scene.paint.Color;
-
 import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.ClosePath;
 import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.PathElement;
-import javafx.scene.shape.QuadCurveTo;
-import javafx.stage.Stage;
-
-import javafx.util.Duration;
  
 public class Basketball extends Background 
 {
@@ -80,10 +61,6 @@ public class Basketball extends Background
 				   new MoveTo(525, 770), //Initial start
 				   
 				   new QuadCurveTo(275,30,550,300), //Curve thing
-				   /*new LineTo(300, 400),
-				   new LineTo(500,200),
-				   new LineTo(100,200),
-				   new LineTo(100,350),*/
 				   
 				   new ClosePath() //Finished the path back to the start
 		   };
@@ -143,7 +120,6 @@ public class Basketball extends Background
       try {
 		QuestionBoardDatabase();
 	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
     
@@ -173,7 +149,6 @@ public class Basketball extends Background
         primaryStage.setTitle("Ball On Stites");
         Button btnA = new Button();
         btnA.setText("A. " + AnswerArrays.getCorrect(num));
-       // btnA.setText("A. " + AnswerArrays.get(num).correct);
         btnA.setTranslateX(-400);
         btnA.setTranslateY(318);
         btnA.setMinSize(900,119);
@@ -203,9 +178,6 @@ public class Basketball extends Background
         btnA.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent event)
             {
-            	/*Stage primaryStage = new Stage();
-                instructions.start(primaryStage);
-                Stage stage = (Stage) btnA.getScene().getWindow();*/
                 System.out.println(AnswerArrays.getCorrect(num));
                // stage.close();
             }
@@ -242,11 +214,7 @@ public class Basketball extends Background
       
         btnB.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent event)
-            {
-            	/*Stage primaryStage = new Stage();
-                instructions.start(primaryStage);
-                Stage stage = (Stage) btnB.getScene().getWindow();
-                stage.close();*/
+            {      
             	
             	System.out.println(AnswerArrays.getChoiceB(num));
             }
@@ -285,10 +253,6 @@ public class Basketball extends Background
         btnC.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent event)
             {
-            	/*Stage primaryStage = new Stage();
-                instructions.start(primaryStage);
-                Stage stage = (Stage) btnC.getScene().getWindow();
-                stage.close();*/
             	System.out.println(AnswerArrays.getChoiceC(num));
             }
         });
@@ -326,10 +290,6 @@ public class Basketball extends Background
             btnD.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent event)
             {
-            	/*Stage primaryStage = new Stage();
-                instructions.start(primaryStage);
-                Stage stage = (Stage) btn.getScene().getWindow();
-                stage.close();*/
             	System.out.println(AnswerArrays.getChoiceD(num));
             }
         });
@@ -354,7 +314,7 @@ public class Basketball extends Background
     				String sentence = file.nextLine();
     				
     				AnswerArrays word = new AnswerArrays(sentence);
-    				//System.out.println(word);
+    				
     			}
     			
     			
@@ -370,42 +330,9 @@ public class Basketball extends Background
     				String sentence = file2.nextLine();
     				
     				Questions word = new Questions(sentence);
-    				//System.out.println(word);
+    				
     			}
     }
     
-  /* public static void animation(Stage primaryStage)
-   {
-	   ImageView ball = new ImageView();
-	     ball.setImage(new Image("file:Ball.png",100, 100, false, false));
-	     ball.setX(50);
-	      ball.setY(550);
-	   
-	   //Setting the path of the animation
-	   PathElement[] path = 
-		   {
-				   new MoveTo(50, 550),
-				   new QuadCurveTo(0,500,300,100)
-		   };
-
-	   //Adding location of the path for animation
-	   Path road = new Path();
-	   road.setStroke(Color.TRANSPARENT);
-	   road.getElements().addAll(path);
-
-	   PathTransition anim = new PathTransition();
-	      anim.setNode(ball);
-	      anim.setPath(road);
-	      anim.setDuration(new Duration(1000));
-	      anim.setCycleCount(Timeline.INDEFINITE);
-	   Group root = new Group();
-	      root.getChildren().addAll(road,ball);
-	      
-	      
-	      anim.play();
-	      
-	      
-	      
-   }*/
-   
 }
+   
