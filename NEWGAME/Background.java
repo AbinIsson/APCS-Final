@@ -25,20 +25,18 @@ public class Background extends Application {
     
     public void start(Stage primaryStage) 
     {
-    
+    	
+    	 //Basic set up of Start Page
         StackPane root = new StackPane();
+        Canvas canvas = new Canvas( 700, 700 );
+        GraphicsContext gc = canvas.getGraphicsContext2D();
         
-   
         
-      //Basic set up of Start Page
-      
         primaryStage.setScene(new Scene(root, 700, 700));
         primaryStage.show();
-        
-        Canvas canvas = new Canvas( 700, 700 );
         root.getChildren().add( canvas );
              
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+     
       
         
         //Background Image
@@ -81,15 +79,7 @@ public class Background extends Application {
       //Play Song
      
         playAudio();
-        
-       
-        
-        
-        
-       /* ImageView iv = new ImageView();
-        iv.setImage(image);
-        
-       root.getChildren().add(iv);*/
+
         primaryStage.show();
     
     }
