@@ -29,6 +29,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
 import javafx.scene.shape.QuadCurveTo;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
@@ -76,8 +77,8 @@ public class Basketball extends Background
 		ball.setY(600);
 
 		//Getting a random path animation
-		//PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
-		PathElement[] path = Animation.getRandomAnimation(3);
+		PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
+		//PathElement[] path = Animation.getRandomAnimation(4);
 
 
 		//Adding location of the path for animation
@@ -124,14 +125,79 @@ public class Basketball extends Background
 
 		//PLAY ANIMATION COMMAND
 		anim.play();
+		
+		
+		
+
+		  //Bar For Arrow
+	      Rectangle rect1 = new Rectangle(20, 20, 100, 50);
+        rect1.setFill(Color.BLUE);
+        rect1.setTranslateX(10);
+        rect1.setTranslateY(400);
+        root.getChildren().addAll(rect1);
+        
+        
+        Rectangle rect2 = new Rectangle(20, 20, 70, 50);
+        rect2.setFill(Color.RED);
+        rect2.setTranslateX(90);
+        rect2.setTranslateY(400);
+        root.getChildren().addAll(rect2);
+        
+        Rectangle rect3 = new Rectangle(20, 20, 40, 50);
+        rect3.setFill(Color.ORANGE);
+        rect3.setTranslateX(140);
+        rect3.setTranslateY(400);
+        root.getChildren().addAll(rect3);
+        
+        Rectangle rect4 = new Rectangle(20, 20, 24, 50);
+        rect4.setFill(Color.GREEN);
+        rect4.setTranslateX(165);
+        rect4.setTranslateY(400);
+        root.getChildren().addAll(rect4);
+        
+        Rectangle rect5 = new Rectangle(20, 20, 40, 50);
+        rect5.setFill(Color.ORANGE);
+        rect5.setTranslateX(195);
+        rect5.setTranslateY(400);
+        root.getChildren().addAll(rect5);
+      
+        Rectangle rect6 = new Rectangle(20, 20, 70, 50);
+        rect6.setFill(Color.RED);
+        rect6.setTranslateX(242);
+        rect6.setTranslateY(400);
+        root.getChildren().addAll(rect6);
+        
+        Rectangle rect7 = new Rectangle(20, 20, 100, 50);
+        rect7.setFill(Color.BLUE);
+        rect7.setTranslateX(325);
+        rect7.setTranslateY(400);
+        root.getChildren().addAll(rect7);
 
 
 
+        ImageView ball2 = new ImageView(); 	//Ball on Bar
+		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
+        
+        PathElement[] bar = Animation.bar();
 
 
+		//Adding location of the path for animation
+		Path road2 = new Path(); //Path of the bar
+		road2.setStroke(Color.TRANSPARENT); //Making the color invisible
+		road2.getElements().addAll(bar);
+		/*ball2.setX(185);
+		ball2.setY(420);*/
 
+		PathTransition barAnim = new PathTransition();
+		barAnim.setNode(ball2);
+		barAnim.setPath(road2);
+		barAnim.setDuration(new Duration(1500));
+		barAnim.setCycleCount(Timeline.INDEFINITE);
 
-
+		
+		root.getChildren().addAll(road2,ball2);
+		
+		barAnim.play();
 
 		//Disable maximize option on program
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
@@ -141,4 +207,3 @@ public class Basketball extends Background
 	}
 
 }
-
