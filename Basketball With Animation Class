@@ -358,7 +358,16 @@ public class Basketball extends Background
     			}
     }
     
-    /*
+   /*
+	 * @param - location of the ball on the rectangle, 
+	 * this will determine the score for that player
+	 */
+	private void calculateScore(double location)
+	{
+		
+	}
+	
+	/*
 	 * @param - the number of points that  needs to be added
 	 * Updates the score variable with @param
 	 */
@@ -374,5 +383,6 @@ public class Basketball extends Background
 	{
 		return score;
 	}
+
     
 }
