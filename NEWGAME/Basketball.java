@@ -1,70 +1,24 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Scanner;
-import java.util.TimerTask;
-
-import com.sun.glass.ui.Timer;
-
-import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.VPos;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ClosePath;
-import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
-import javafx.scene.shape.QuadCurveTo;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
-import javafx.animation.PathTransition.OrientationType;
-import javafx.animation.Timeline;
-
-import javafx.application.Application;
-
-import javafx.scene.Group;
-import javafx.scene.Scene;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import javafx.scene.paint.Color;
-
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.ClosePath;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.PathElement;
-import javafx.scene.shape.QuadCurveTo;
-import javafx.stage.Stage;
-
 import javafx.util.Duration;
 
 public class Basketball extends Background 
 {
-
+	private int score;  // This variable keeps track of the points obtained
+						//  throughout the game
+	
+	
 	@Override
 
 	public void start(Stage primaryStage)  
@@ -97,7 +51,6 @@ public class Basketball extends Background
 
 
 		StackPane root = new StackPane();
-		Background back = new Background();
 
 
 		//Basic set up of Start Page
@@ -202,8 +155,37 @@ public class Basketball extends Background
 		//Disable maximize option on program
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 
-
+		
 
 	}
+	
+	/*
+	 * @param - location of the ball on the rectangle, 
+	 * this will determine the score for that player
+	 */
+	private void calculateScore(double location)
+	{
+		
+	}
+	
+	/*
+	 * @param - the number of points that  needs to be added
+	 * Updates the score variable with @param
+	 */
+	private void incrementScore(int howMany)
+	{
+		score += howMany;
+	}
+	
+	/*
+	 * @return the updated the score of the current player
+	 */
+	private int getScore()
+	{
+		return score;
+	}
+	
+	
+	
 
 }
