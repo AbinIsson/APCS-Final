@@ -358,4 +358,21 @@ public class Basketball extends Background
     			}
     }
     
+    /*
+	 * @param - the number of points that  needs to be added
+	 * Updates the score variable with @param
+	 */
+	private void incrementScore(int howMany)
+	{
+		score += howMany;
+	}
+	
+	/*
+	 * @return the updated the score of the current player
+	 */
+	private int getScore()
+	{
+		return score;
+	}
+    
 }
