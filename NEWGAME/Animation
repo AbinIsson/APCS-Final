@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcTo;
 import javafx.scene.shape.ClosePath;
 import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.HLineTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -92,5 +93,16 @@ public class Animation {
 		return null;
 
 
+	}
+	
+	public static PathElement[] bar()
+	{
+		PathElement[] path = {new MoveTo(185,420), //Start from green
+
+				new HLineTo(0),
+				new HLineTo(380),
+				new ClosePath()
+		};
+		return path;
 	}
 }
