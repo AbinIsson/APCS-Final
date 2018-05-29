@@ -18,20 +18,14 @@ public class Directions extends Background
     
     public void start(Stage primaryStage) 
     {
-    
+    	//Basic set up of Start Page
         StackPane root = new StackPane();
+        Canvas canvas = new Canvas( 1700, 1000 );
+        GraphicsContext gc = canvas.getGraphicsContext2D();
         
-        Background back = new Background();
-      //Basic set up of Start Page
-      
         primaryStage.setScene(new Scene(root, 1700, 1000));
         primaryStage.show();
-        
-        Canvas canvas = new Canvas( 1700, 1000 );
         root.getChildren().add( canvas );
-             
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-      
         
         //Background Image
         Image ball = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
