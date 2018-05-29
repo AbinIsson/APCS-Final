@@ -41,13 +41,7 @@ public class Background extends Application {
     
         StackPane root = new StackPane();
         
-     //   btn.setOnAction(new EventHandler<ActionEvent>() {
- 
-           /* @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Start Game!");
-            }*/
-       // });
+   
         
       //Basic set up of Start Page
       
