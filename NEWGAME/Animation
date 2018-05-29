@@ -95,13 +95,20 @@ public class Animation {
 
 	}
 	
+	/*
+	 * Updated 
+	 */
+	
 	public static PathElement[] bar()
 	{
 		PathElement[] path = {new MoveTo(185,420), //Start from green
 
 				new HLineTo(0),
 				new HLineTo(380),
-				new ClosePath()
+				new HLineTo(0),
+				new HLineTo(380),
+				
+			//	new ClosePath()
 		};
 		return path;
 	}
