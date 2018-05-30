@@ -18,7 +18,13 @@ import javafx.util.Duration;
 
 public class Basketball extends Background 
 {
-		private int count = 0;
+	private int count = 0;
+	private int score;  // This variable keeps track of the points obtained
+						//  throughout the game
+	private double loc; // location of the ball on the slider 
+					// when stopped during the bar animation
+	private ImageView ball;
+	
 	@Override
 
 	public void start(Stage primaryStage)  
@@ -27,7 +33,6 @@ public class Basketball extends Background
 		ImageView ball = new ImageView();
 		ball.setImage(new Image("file:Ball.png",100, 100, false, false));
 		ball.setX(475);
-		
 		ball.setY(600);
 
 		//Getting a random path animation
@@ -45,12 +50,8 @@ public class Basketball extends Background
 		anim.setDuration(new Duration(1500));
 		anim.setCycleCount(Timeline.INDEFINITE);
 
-
-
-
-
 		StackPane root = new StackPane();
-		Background back = new Background();
+		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 
 		//Basic set up of Start Page
@@ -62,10 +63,6 @@ public class Basketball extends Background
 		Canvas canvas = new Canvas( 1700, 1000 );
 		root.getChildren().add( canvas );
 		root.getChildren().addAll(road,ball);
-
-
-
-		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 
 		//Background Image
@@ -83,72 +80,104 @@ public class Basketball extends Background
 		
 
 		  //Bar For Arrow
-	      Rectangle rect1 = new Rectangle(20, 20, 100, 50);
-        rect1.setFill(Color.BLUE);
-        rect1.setTranslateX(10);
-        rect1.setTranslateY(400);
-        root.getChildren().addAll(rect1);
-        
-        
-        Rectangle rect2 = new Rectangle(20, 20, 70, 50);
-        rect2.setFill(Color.RED);
-        rect2.setTranslateX(90);
-        rect2.setTranslateY(400);
-        root.getChildren().addAll(rect2);
-        
-        Rectangle rect3 = new Rectangle(20, 20, 40, 50);
-        rect3.setFill(Color.ORANGE);
-        rect3.setTranslateX(140);
-        rect3.setTranslateY(400);
-        root.getChildren().addAll(rect3);
-        
-        Rectangle rect4 = new Rectangle(20, 20, 24, 50);
-        rect4.setFill(Color.GREEN);
-        rect4.setTranslateX(165);
-        rect4.setTranslateY(400);
-        root.getChildren().addAll(rect4);
-        
-        Rectangle rect5 = new Rectangle(20, 20, 40, 50);
-        rect5.setFill(Color.ORANGE);
-        rect5.setTranslateX(195);
-        rect5.setTranslateY(400);
-        root.getChildren().addAll(rect5);
-      
-        Rectangle rect6 = new Rectangle(20, 20, 70, 50);
-        rect6.setFill(Color.RED);
-        rect6.setTranslateX(242);
-        rect6.setTranslateY(400);
-        root.getChildren().addAll(rect6);
-        
-        Rectangle rect7 = new Rectangle(20, 20, 100, 50);
-        rect7.setFill(Color.BLUE);
-        rect7.setTranslateX(325);
-        rect7.setTranslateY(400);
-        root.getChildren().addAll(rect7);
+	  Rectangle rect1 = new Rectangle(20, 20, 100, 50);
+		rect1.setFill(Color.BLUE);
+		rect1.setTranslateX(10);
+		rect1.setTranslateY(400);
+		root.getChildren().addAll(rect1);
 
 
+		Rectangle rect2 = new Rectangle(20, 20, 70, 50);
+		rect2.setFill(Color.RED);
+		rect2.setTranslateX(90);
+		rect2.setTranslateY(400);
+		root.getChildren().addAll(rect2);
 
-        ImageView ball2 = new ImageView(); 	//Ball on Bar
+		Rectangle rect3 = new Rectangle(20, 20, 40, 50);
+		rect3.setFill(Color.ORANGE);
+		rect3.setTranslateX(140);
+		rect3.setTranslateY(400);
+		root.getChildren().addAll(rect3);
+
+		Rectangle rect4 = new Rectangle(20, 20, 24, 50);
+		rect4.setFill(Color.GREEN);
+		rect4.setTranslateX(165);
+		rect4.setTranslateY(400);
+		root.getChildren().addAll(rect4);
+
+		Rectangle rect5 = new Rectangle(20, 20, 40, 50);
+		rect5.setFill(Color.ORANGE);
+		rect5.setTranslateX(195);
+		rect5.setTranslateY(400);
+		root.getChildren().addAll(rect5);
+
+		Rectangle rect6 = new Rectangle(20, 20, 70, 50);
+		rect6.setFill(Color.RED);
+		rect6.setTranslateX(242);
+		rect6.setTranslateY(400);
+		root.getChildren().addAll(rect6);
+
+		Rectangle rect7 = new Rectangle(20, 20, 100, 50);
+		rect7.setFill(Color.BLUE);
+		rect7.setTranslateX(325);
+		rect7.setTranslateY(400);
+		root.getChildren().addAll(rect7);
+
+		/*Black box for the score board - not complete */
+		Rectangle board = new Rectangle(400,200);
+		board.setTranslateX(500);
+		board.setTranslateY(-375);
+		board.setFill(Color.BLACK);
+		
+		Text scoreText = new Text();
+		scoreText.setX(1200);
+		scoreText.setY(50);
+		scoreText.setFill(Color.RED);
+		scoreText.setStroke(Color.BLACK);
+		scoreText.setStrokeWidth(3);
+		scoreText.setFont(Font.font("Verdana", FontWeight.BOLD, 35));
+		scoreText.setText("Score");
+		
+		
+		root.getChildren().add(board);
+		root.getChildren().add(scoreText);
+		
+		
+     		ImageView ball2 = new ImageView(); 	//Ball on Bar
 		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
         
-        PathElement[] bar = Animation.bar();
+       		PathElement[] bar = Animation.bar();
 
 
 		//Adding location of the path for animation
 		Path road2 = new Path(); //Path of the bar
 		road2.setStroke(Color.TRANSPARENT); //Making the color invisible
 		road2.getElements().addAll(bar);
-		/*ball2.setX(185);
-		ball2.setY(420);*/
 
 		PathTransition barAnim = new PathTransition();
 		barAnim.setNode(ball2);
 		barAnim.setPath(road2);
 		barAnim.setDuration(new Duration(1500));
+		barAnim.setRate(2.5f);
 		barAnim.setCycleCount(Timeline.INDEFINITE);
 		barAnim.play();
 		
 		root.getChildren().addAll(road2,ball2);
+		
+		gc.setFill(Color.RED);
+		gc.setStroke( Color.BLACK );
+		gc.setLineWidth(3);
+		Font theFont = Font.font( "Verdana", FontWeight.BOLD, 35 );
+		gc.setFont( theFont );
+		gc.fillText( "Score", 1200, 50 );
+		gc.strokeText( "Score", 1200, 50 );
+		
+		
+		/*
+		 * use getScore() to display the score after the box is done 
+		 */
+		
+		
 		
 		 Button stopButton = new Button();
 	        stopButton.setText("Stop!!!");
@@ -171,6 +200,18 @@ public class Basketball extends Background
 	            		
 	            	}
 	            	
+			DoubleProperty xValue = new SimpleDoubleProperty();
+			xValue.bind(ball.xProperty());
+			xValue.addListener(new ChangeListener<Object>()
+			{
+				@Override
+				public void changed(ObservableValue<?> ov, Object t, Object t1)
+				{
+					loc = (double) t1;
+					
+					calculateScore(loc);
+				}
+			});
 	            	
 	            }
 	            
@@ -182,6 +223,52 @@ public class Basketball extends Background
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 		
 
+	}
+	
+	/*
+	 * @param - location of the ball on the rectangle, 
+	 * this will determine the score for that player
+	 */
+	private void calculateScore(double location)
+	{
+		if(location < 100)
+		{
+	
+			if(location < 70)
+			{
+				incrementScore(1);
+				
+				if(location < 40)
+				{
+					incrementScore(2);
+					
+					if(location < 24)
+					{
+						incrementScore(3);
+					}
+				}
+			}
+			
+			
+			
+		}
+	}
+
+	/*
+	 * @param - the number of points that  needs to be added
+	 * Updates the score variable with @param
+	 */
+	private void incrementScore(int howMany)
+	{
+		score += howMany;
+	}
+
+	/*
+	 * @return the updated the score of the current player
+	 */
+	private int getScore()
+	{
+		return score;
 	}
 
 }
