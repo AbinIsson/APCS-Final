@@ -76,22 +76,76 @@ public class Animation {
 
 
 	}
-	
+
 	/*
 	 * Updated 
 	 */
-	
+
 	public static PathElement[] bar()
 	{
 		PathElement[] path = {new MoveTo(185,420), //Start from green
 
 				new HLineTo(0),
 				new HLineTo(380),
-				new HLineTo(0),
-				new HLineTo(380),
-				
-			//	new ClosePath()
+				new HLineTo(185)
 		};
 		return path;
+	}
+
+	public static PathElement[] getMissAnimation(int num)
+	{
+		if(num == 1)
+		{
+			PathElement[] miss1 = {new MoveTo(525, 770), //Initial start
+
+					new LineTo(570,200),
+					new LineTo(650,250),
+					new LineTo(700,350),
+					new LineTo(700,770)
+			};
+
+			return miss1;
+		}
+		if(num == 2)
+		{
+			PathElement[] miss2 = {new MoveTo(525, 770), //Initial start
+
+					new VLineTo(490),
+					new LineTo(300,250),
+					new ClosePath()
+			};
+
+			return miss2;
+		}
+
+		if(num == 3)
+		{
+			PathElement[] miss3 = {new MoveTo(525, 770), //Initial start
+
+					new VLineTo(550),
+					new LineTo(375,275),
+					new LineTo(525,200),
+					new LineTo(725,275),
+					new ClosePath()
+			};
+
+			return miss3;
+		}	
+		if(num == 4)
+		{
+			PathElement[] miss4 = {new MoveTo(525, 770), //Initial start
+
+
+					new LineTo(125,700),
+					new LineTo(420,200),
+					new LineTo(575,200),
+					new LineTo(1000,700),
+					new ClosePath()
+			};
+
+			return miss4;
+		}
+
+		return null;
 	}
 }
