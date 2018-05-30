@@ -23,28 +23,28 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
 public class Basketball extends Background 
 {
-	private int count = 0;
 	private int score;  // This variable keeps track of the points obtained
 						//  throughout the game
 	private double loc; // location of the ball on the slider 
 					// when stopped during the bar animation
 	private ImageView ball;
-	
+
+
 	@Override
 
 	public void start(Stage primaryStage)  
 	{
 		//Animation  - Gets the ball image and sets location
-		ImageView ball = new ImageView();
+		ball = new ImageView();
 		ball.setImage(new Image("file:Ball.png",100, 100, false, false));
 		ball.setX(475);
 		ball.setY(600);
 
 		//Getting a random path animation
 		PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
-		//= Animation.getMissAnimation((int) (Math.random()*4+1));
 
 		//Adding location of the path for animation
 		Path road = new Path();
@@ -57,8 +57,11 @@ public class Basketball extends Background
 		anim.setDuration(new Duration(1500));
 		anim.setCycleCount(Timeline.INDEFINITE);
 
+
+
+	
+
 		StackPane root = new StackPane();
-		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 
 		//Basic set up of Start Page
@@ -71,23 +74,19 @@ public class Basketball extends Background
 		root.getChildren().add( canvas );
 		root.getChildren().addAll(road,ball);
 
+		//PLAY ANIMATION COMMAND
+		anim.play();
+
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+
 
 		//Background Image
 		Image court = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
 		gc.drawImage(court, 0, 0);
 
 
-
-
-
-		//PLAY ANIMATION COMMAND
-		anim.play();
-		
-		
-		
-
-		  //Bar For Arrow
-	  Rectangle rect1 = new Rectangle(20, 20, 100, 50);
+		//Bar For Arrow
+		Rectangle rect1 = new Rectangle(20, 20, 100, 50);
 		rect1.setFill(Color.BLUE);
 		rect1.setTranslateX(10);
 		rect1.setTranslateY(400);
@@ -129,33 +128,40 @@ public class Basketball extends Background
 		rect7.setTranslateX(325);
 		rect7.setTranslateY(400);
 		root.getChildren().addAll(rect7);
-
-		/*Black box for the score board - not complete */
-		Rectangle board = new Rectangle(400,200);
+		
+		
+		
+		/*Rectangle board = new Rectangle(400,200);
 		board.setTranslateX(500);
-		board.setTranslateY(-375);
+		board.setTranslateY(-350);
 		board.setFill(Color.BLACK);
+		root.getChildren().add(board);*/
 		
-		Text scoreText = new Text();
-		scoreText.setX(1200);
-		scoreText.setY(50);
-		scoreText.setFill(Color.RED);
-		scoreText.setStroke(Color.BLACK);
-		scoreText.setStrokeWidth(3);
-		scoreText.setFont(Font.font("Verdana", FontWeight.BOLD, 35));
-		scoreText.setText("Score");
+		gc.setFill(Color.BLACK);
+		gc.fillRect(1100, 50, 400, 200);
 		
+		gc.setFill(Color.RED);
+		gc.setStroke( Color.BLACK );
+		gc.setLineWidth(3);
+		Font theFont = Font.font( "Verdana", FontWeight.BOLD, 35 );
+		gc.setFont( theFont );
+		gc.fillText( "Score", 1285, 44 );
+		gc.strokeText( "Score", 1285, 44);
 		
-		root.getChildren().add(board);
-		root.getChildren().add(scoreText);
-		
-		
-     		ImageView ball2 = new ImageView(); 	//Ball on Bar
+		gc.setFill(Color.ALICEBLUE);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(2);
+		Font daFont = Font.font("Arial", FontWeight.SEMI_BOLD, 25);
+		gc.setFont(daFont);
+		gc.fillText(getScore(),1285 , 65);
+		gc.strokeText(getScore(), 1285, 65);
+
+		ImageView ball2 = new ImageView(); 	//Ball on Bar
 		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
-        
-       		PathElement[] bar = Animation.bar();
 
-
+		PathElement[] bar = Animation.bar();
+		
+	
 		//Adding location of the path for animation
 		Path road2 = new Path(); //Path of the bar
 		road2.setStroke(Color.TRANSPARENT); //Making the color invisible
@@ -169,15 +175,23 @@ public class Basketball extends Background
 		barAnim.setCycleCount(Timeline.INDEFINITE);
 		barAnim.play();
 		
-		root.getChildren().addAll(road2,ball2);
-		
+		/*
 		gc.setFill(Color.RED);
 		gc.setStroke( Color.BLACK );
 		gc.setLineWidth(3);
 		Font theFont = Font.font( "Verdana", FontWeight.BOLD, 35 );
 		gc.setFont( theFont );
-		gc.fillText( "Score", 1200, 50 );
-		gc.strokeText( "Score", 1200, 50 );
+		gc.fillText( "Score", 1285, 44 );
+		gc.strokeText( "Score", 1285, 44);*/
+		
+		
+
+		root.getChildren().addAll(road2,ball2);
+		
+		
+		
+		
+		
 		
 		
 		/*
@@ -186,52 +200,60 @@ public class Basketball extends Background
 		
 		
 		
-		 Button stopButton = new Button();
-	        stopButton.setText("Stop!!!");
-	        stopButton.setTranslateX(-400);
-	        stopButton.setTranslateY(400);
-	        stopButton.setMaxSize(300, 100);
-	        root.getChildren().add(stopButton);
-	        TryAgain again = new TryAgain();
-	      
-	     
-	        stopButton.setOnAction(new EventHandler<ActionEvent>() {
-	            @Override public void handle(ActionEvent event)
-	            {
-	            	barAnim.pause();
-	            	Stage primaryStage = new Stage();
-	            	count++;
-	            	if(count != 2)
-	            	{
-	            		again.start(primaryStage);
-	            		
-	            	}
-	            	
-			DoubleProperty xValue = new SimpleDoubleProperty();
-			xValue.bind(ball.xProperty());
-			xValue.addListener(new ChangeListener<Object>()
+		
+		
+		
+		
+		
+		
+		
+		Button stopButton = new Button();
+		stopButton.setText("Stop!!!");
+		stopButton.setLayoutX(500);
+		stopButton.setLayoutY(500);
+	
+		root.getChildren().add(stopButton);
+		stopButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override public void handle(ActionEvent event)
 			{
-				@Override
-				public void changed(ObservableValue<?> ov, Object t, Object t1)
+				barAnim.pause();
+				
+				DoubleProperty xValue = new SimpleDoubleProperty();
+				xValue.bind(ball.xProperty());
+				xValue.addListener(new ChangeListener<Object>()
 				{
-					loc = (double) t1;
-					
-					calculateScore(loc);
-				}
-			});
-	            	
-	            }
-	            
-	        });
-	        
-	        
+					@Override
+					public void changed(ObservableValue<?> ov, Object t, Object t1)
+					{
+						loc = (double) t1;
+
+						calculateScore(loc);
+					}
+				});
+				
+			
+			}
+		}
+		
+		);
+		
+	
+		
+		
+		
+		
+		
+	
+
 
 		//Disable maximize option on program
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
-		
+
+
 
 	}
-	
+
 	/*
 	 * @param - location of the ball on the rectangle, 
 	 * this will determine the score for that player
@@ -273,9 +295,12 @@ public class Basketball extends Background
 	/*
 	 * @return the updated the score of the current player
 	 */
-	private int getScore()
+	private String getScore()
 	{
-		return score;
+		return ""+score;
 	}
+
+
+
 
 }
