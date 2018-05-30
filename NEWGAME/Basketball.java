@@ -32,8 +32,7 @@ public class Basketball extends Background
 
 		//Getting a random path animation
 		PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
-		//PathElement[] path = Animation.getRandomAnimation(4);
-
+		//= Animation.getMissAnimation((int) (Math.random()*4+1));
 
 		//Adding location of the path for animation
 		Path road = new Path();
