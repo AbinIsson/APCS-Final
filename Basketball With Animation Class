@@ -1,44 +1,6 @@
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.PathElement;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 
-
-public class Basketball extends Background 
-{
-	private int score;  // This variable keeps track of the points obtained
-						//  throughout the game
-	private double loc; // location of the ball on the slider 
-					// when stopped during the bar animation
-	
-
-
-	@Override
-
-	public void start(Stage primaryStage)  
-	{
 		//Animation  - Gets the ball image and sets location
-		ImageView ball = new ImageView();
+		ball = new ImageView();
 		ball.setImage(new Image("file:Ball.png",100, 100, false, false));
 		ball.setX(475);
 		ball.setY(600);
@@ -184,7 +146,9 @@ public class Basketball extends Background
 		
 		
 		
-		
+		/*
+		 * use getScore() to display the score after the box is done 
+		 */
 		
 		
 		
@@ -215,6 +179,8 @@ public class Basketball extends Background
 					public void changed(ObservableValue<?> ov, Object t, Object t1)
 					{
 						loc = (double) t1;
+						
+						calculateScore(loc);
 					}
 				});
 				
@@ -238,35 +204,4 @@ public class Basketball extends Background
 
 
 
-	}
-
-	/*
-	 * @param - location of the ball on the rectangle, 
-	 * this will determine the score for that player
-	 */
-	private void calculateScore(double location)
-	{
-
-	}
-
-	/*
-	 * @param - the number of points that  needs to be added
-	 * Updates the score variable with @param
-	 */
-	private void incrementScore(int howMany)
-	{
-		score += howMany;
-	}
-
-	/*
-	 * @return the updated the score of the current player
-	 */
-	private int getScore()
-	{
-		return score;
-	}
-
-
-
-
-}
+	
