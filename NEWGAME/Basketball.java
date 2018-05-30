@@ -230,7 +230,7 @@ public class Basketball extends Background
 			gc.fillText(getScore().toString() + " ",550 , 65);
 			gc.strokeText(getScore().toString(), 550, 65);
 		
-	        Button tryAgain = new Button ("Try Again (Only Press Once)");
+	        Button tryAgain = new Button ("Try Again");
 	        
 	        
 	        tryAgain.setTranslateX(-400);
@@ -250,12 +250,12 @@ public class Basketball extends Background
 	            	if(count > 0)
 	            	{
 		            	count--;
-		            	tryAgain.setText("You Have " + count + " times remaining");
+		            	//tryAgain.setText("You Have " + count + " times remaining");
 		            	
-		                baller.start(cool);
+		                baller.start(primaryStage);
 		                
 		                Stage stage = (Stage) tryAgain.getScene().getWindow();
-		                stage.close();
+		                //stage.close();
 	            	}
 	            }
 	        });
