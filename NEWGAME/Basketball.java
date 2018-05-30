@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -27,7 +28,7 @@ public class Basketball extends Background
 {
 	private int count = 0;
 	
-	private int score;  // This variable keeps track of the points obtained
+	private int score = 1;  // This variable keeps track of the points obtained
 	//  throughout the game
 	private double loc; // location of the ball on the slider 
 	// when stopped during the bar animation
@@ -119,7 +120,8 @@ public class Basketball extends Background
 		gc.setFont( theFont );
 		gc.fillText( "Score", 1285, 44 );
 		gc.strokeText( "Score", 1285, 44);
-
+		
+		
 
         ImageView ball2 = new ImageView(); 	//Ball on Bar
 		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
@@ -195,21 +197,26 @@ public class Basketball extends Background
 	            		
 	            	}
 	            	
-	            	DoubleProperty xValue = new SimpleDoubleProperty();
-					xValue.bind(ball.xProperty());
-					xValue.addListener(new ChangeListener<Object>()
-					{
-						@Override
-						public void changed(ObservableValue<?> ov, Object t, Object t1)
-						{
-							loc = (double) t1;
-
-							calculateScore(loc);
-						}
-					});
-					
-	
-	            	
+	            	ChangeListener<Number> listener = new ChangeListener<Number>() {
+	            		@Override
+	            		public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+	            			Bounds boundsInScene = ball.localToScene(ball.getBoundsInLocal());
+	            			double xInScene = boundsInScene.getMinX();
+	            			double yInScene = boundsInScene.getMinY();
+	            			// do something with values...
+	            		}
+	            	};
+	        ball.translateXProperty().addListener(listener);
+	        ball.translateYProperty().addListener(listener);
+	        
+	        calculateScore(ball.getTranslateX());
+	        gc.setFill(Color.RED);
+			gc.setStroke( Color.BLACK );
+			gc.setLineWidth(3);
+		
+			gc.setFont( theFont );
+			gc.fillText( getScore(), 1285, 180 );
+			gc.strokeText( getScore(), 1285, 180);
 	           
 	            	
 	            }
@@ -270,23 +277,31 @@ public class Basketball extends Background
 		if(location < 100)
 		{
 	
-			if(location < 70)
+	
+			
+			
+			
+		}
+		
+		else if(location < 70)
+		{
+			incrementScore(1);
+			
+			/*else if(location < 40)
 			{
-				incrementScore(1);
+				incrementScore(2);
 				
-				if(location < 40)
+				else if(location < 24)
 				{
-					incrementScore(2);
-					
-					if(location < 24)
-					{
-						incrementScore(3);
-					}
+					incrementScore(3);
 				}
-			}
+			}*/
+		}
+		else if(location < 40)
+		{
+			incrementScore(2);
 			
-			
-			
+		
 		}
 	}
 
@@ -310,4 +325,4 @@ public class Basketball extends Background
 
 
 
-}
+} 
