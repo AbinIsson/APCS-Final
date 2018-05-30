@@ -205,6 +205,7 @@ public class Basketball extends Background
 		root.getChildren().add(stopButton);
 		TryAgain again = new TryAgain();
 	      
+		Stage cool = new Stage();
 	     
 	        stopButton.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override public void handle(ActionEvent event)
@@ -214,13 +215,8 @@ public class Basketball extends Background
 	          
 				
 	        
-	            	Stage primaryStage = new Stage();
-	            	count++;
-	            	if(count != 2)
-	            	{
-	            		again.start(primaryStage);
-	            		
-	            	}
+	            	
+	            	
 	            	
 	            	DoubleProperty xValue = new SimpleDoubleProperty();
 					xValue.bind(ball.xProperty());
@@ -239,6 +235,36 @@ public class Basketball extends Background
 	            	
 	            }
 	            
+	        });
+	        
+	        Button tryAgain = new Button ("Try Again (Only Press Once)");
+	        
+	        
+	        tryAgain.setTranslateX(-400);
+			tryAgain.setTranslateY(300);
+			tryAgain.setMaxSize(300, 100);
+			root.getChildren().add(tryAgain);
+	        count++;
+        	if(count != 1)
+        	{
+        		again.start(cool);
+        		
+        	}
+	       Basketball baller = new Basketball();
+        	tryAgain.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override public void handle(ActionEvent event)
+	            {
+	            	if(count > 0)
+	            	{
+		            	count--;
+		            	tryAgain.setText("You Have " + count + " times remaining");
+		            	
+		                baller.start(cool);
+		                
+		                Stage stage = (Stage) tryAgain.getScene().getWindow();
+		                stage.close();
+	            	}
+	            }
 	        });
 	        
 	        
