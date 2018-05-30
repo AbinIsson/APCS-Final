@@ -43,56 +43,31 @@ public class Basketball extends Background
 		ball.setX(475);
 		ball.setY(600);
 
-		//Getting a random path animation
-		PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
-
-
-		//Adding location of the path for animation
-		Path road = new Path();
-		road.setStroke(Color.TRANSPARENT); //Making the color invisible
-		road.getElements().addAll(path);
-
-		PathTransition anim = new PathTransition();
-		anim.setNode(ball);
-		anim.setPath(road);
-		anim.setDuration(new Duration(1500));
-		anim.setCycleCount(Timeline.INDEFINITE);
-
-
 		StackPane root = new StackPane();
 		
 
 		//Basic set up of Start Page
 		primaryStage.setScene(new Scene(root, 1700, 1000));
 		primaryStage.show();
-		
-		
-
+	
 
 		//Basketball    
 		Canvas canvas = new Canvas( 1700, 1000 );
 		root.getChildren().add( canvas );
-		root.getChildren().addAll(road,ball);
+	
 		
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		//Background Image
 		Image court = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
 		gc.drawImage(court, 0, 0);
-
-
-
-
-
-		//PLAY ANIMATION COMMAND
-		anim.play();
 		
 		
 		
 
 		  //Bar For Arrow
 	      Rectangle rect1 = new Rectangle(20, 20, 100, 50);
-        rect1.setFill(Color.BLUE);
+       		rect1.setFill(Color.BLUE);
         rect1.setTranslateX(10);
         rect1.setTranslateY(400);
         root.getChildren().addAll(rect1);
@@ -133,12 +108,6 @@ public class Basketball extends Background
         rect7.setTranslateX(325);
         rect7.setTranslateY(400);
         root.getChildren().addAll(rect7);
-
-        /*Rectangle board = new Rectangle(400,200);
-		board.setTranslateX(500);
-		board.setTranslateY(-350);
-		board.setFill(Color.BLACK);
-		root.getChildren().add(board);*/
         
         gc.setFill(Color.BLACK);
 		gc.fillRect(1100, 50, 400, 200);
@@ -150,14 +119,6 @@ public class Basketball extends Background
 		gc.setFont( theFont );
 		gc.fillText( "Score", 1285, 44 );
 		gc.strokeText( "Score", 1285, 44);
-		
-		gc.setFill(Color.ALICEBLUE);
-		gc.setStroke(Color.BLACK);
-		gc.setLineWidth(2);
-		Font daFont = Font.font("Arial", FontWeight.SEMI_BOLD, 25);
-		gc.setFont(daFont);
-		gc.fillText(getScore(),1285 , 65);
-		gc.strokeText(getScore(), 1285, 65);
 
 
         ImageView ball2 = new ImageView(); 	//Ball on Bar
@@ -170,8 +131,7 @@ public class Basketball extends Background
 		Path road2 = new Path(); //Path of the bar
 		road2.setStroke(Color.TRANSPARENT); //Making the color invisible
 		road2.getElements().addAll(bar);
-		/*ball2.setX(185);
-		ball2.setY(420);*/
+	
 
 		PathTransition barAnim = new PathTransition();
 		barAnim.setNode(ball2);
@@ -180,15 +140,6 @@ public class Basketball extends Background
 		barAnim.setRate(2.5f);
 		barAnim.setCycleCount(Timeline.INDEFINITE);
 		barAnim.play();
-		
-		/*
-		gc.setFill(Color.RED);
-		gc.setStroke( Color.BLACK );
-		gc.setLineWidth(3);
-		Font theFont = Font.font( "Verdana", FontWeight.BOLD, 35 );
-		gc.setFont( theFont );
-		gc.fillText( "Score", 1285, 44 );
-		gc.strokeText( "Score", 1285, 44);*/
 		
 		root.getChildren().addAll(road2,ball2);
 		
@@ -212,11 +163,37 @@ public class Basketball extends Background
 	            {
 	            	barAnim.pause();
 	            	
+	            	//Getting a random path animation
+	            	PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
+	            	 
+
+	        		//Adding location of the path for animation
+	        		Path road = new Path();
+	        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
+	        		road.getElements().addAll(path);
+
+	        		PathTransition anim = new PathTransition();
+	        		anim.setNode(ball);
+	        		anim.setPath(road);
+	        		anim.setDuration(new Duration(1500));
+	        		anim.setCycleCount(Timeline.INDEFINITE);
+	        		
+	        		/*Canvas canvas = new Canvas( 1700, 1000 );
+	        		root.getChildren().add( canvas );*/
+	        		root.getChildren().addAll(road,ball);
+	        		
+	            	//PLAY ANIMATION COMMAND
+	        		anim.play();
 	          
 				
 	        
-	            	
-	            	
+	            	Stage primaryStage = new Stage();
+	            	count++;
+	            	if(count != 2)
+	            	{
+	            		again.start(primaryStage);
+	            		
+	            	}
 	            	
 	            	DoubleProperty xValue = new SimpleDoubleProperty();
 					xValue.bind(ball.xProperty());
@@ -230,13 +207,22 @@ public class Basketball extends Background
 							calculateScore(loc);
 						}
 					});
+					
+	
 	            	
 	           
 	            	
 	            }
 	            
 	        });
-	        
+	          gc.setFill(Color.ALICEBLUE);
+			gc.setStroke(Color.BLACK);
+			gc.setLineWidth(2);
+			Font daFont = Font.font("Arial", FontWeight.SEMI_BOLD, 25);
+			gc.setFont(daFont);
+			gc.fillText(getScore().toString() + " ",550 , 65);
+			gc.strokeText(getScore().toString(), 550, 65);
+		
 	        Button tryAgain = new Button ("Try Again (Only Press Once)");
 	        
 	        
