@@ -94,8 +94,8 @@ public class Directions extends Background
         gc.strokeText( "7. Orange has a slight chance of \nmaking but also a slight \nchance of missing", 1000, 490 );
         
         
-        gc.fillText("8. Red and Blue has a great \nchance of missing", 1000, 620);
-        gc.strokeText( "8. Red and Blue has a great \nchance of missing", 1000, 620 );
+        gc.fillText("8. Red and Blue have a great \nchance of missing", 1000, 620);
+        gc.strokeText( "8. Red and Blue have a great \nchance of missing", 1000, 620 );
         
         //Button to Go To Game
         primaryStage.setTitle("Ball On Stites");
