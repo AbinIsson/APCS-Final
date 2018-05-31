@@ -21,13 +21,16 @@ import javafx.util.Duration;
 
 public class Basketball extends Background 
 {
-	Rectangle rect1;
-	Rectangle rect2;
-	Rectangle rect3;
-	Rectangle rect4;
-	Rectangle rect5;
-	Rectangle rect6;
-	Rectangle rect7;
+	private Rectangle rect1;
+	private Rectangle rect2;
+	private Rectangle rect3;
+	private Rectangle rect4;
+	private Rectangle rect5;
+	private Rectangle rect6;
+	private Rectangle rect7;
+	
+	
+	
 	@Override
 
 	public void start(Stage primaryStage)  
@@ -132,10 +135,7 @@ public class Basketball extends Background
 		
 		root.getChildren().add(stopButton);
 		
-	      
-		Stage cool = new Stage();
-	     
-	     	/*
+	     /*
 		 * Contains the commands after the stopbutton has been pressed
 		 */
 	        stopButton.setOnAction(new EventHandler<ActionEvent>() 
