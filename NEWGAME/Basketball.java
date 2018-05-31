@@ -2,6 +2,7 @@ import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -21,7 +22,7 @@ public class Basketball extends Background
 	private int count = 0;
 	private int percent = 0; // Stores the percentage of chance for basket
 							//  from each turn of the player. 
-	
+		
 	@Override
 
 	public void start(Stage primaryStage)  
@@ -34,6 +35,7 @@ public class Basketball extends Background
 
 		StackPane root = new StackPane();
 		
+
 		//Basic set up of Start Page
 		primaryStage.setScene(new Scene(root, 1700, 1000));
 		primaryStage.show();
@@ -49,12 +51,11 @@ public class Basketball extends Background
 		//Background Image
 		Image court = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
 		gc.drawImage(court, 0, 0);
-		
-		
-		
 
-		  //Bar For Arrow
-	     	//Bar For Arrow
+
+
+
+		//Bar For Arrow
 		Rectangle rect1 = new Rectangle(20, 20, 100, 50);
 		rect1.setFill(Color.BLUE);
 		rect1.setTranslateX(10);
@@ -97,15 +98,13 @@ public class Basketball extends Background
 		rect7.setTranslateX(325);
 		rect7.setTranslateY(400);
 		root.getChildren().addAll(rect7);
-        
-    
-		
-		
 
-       		ImageView ball2 = new ImageView(); 	//Ball on Bar
+
+
+		ImageView ball2 = new ImageView(); 	//Ball on Bar
 		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
-        	
-       		PathElement[] bar = Animation.bar();
+        
+        PathElement[] bar = Animation.bar();
 
 
 		//Adding location of the path for animation
@@ -123,6 +122,7 @@ public class Basketball extends Background
 		barAnim.play();
 		
 		root.getChildren().addAll(road2,ball2);
+	
 		
 		Button stopButton = new Button();
 		stopButton.setText("Stop!!!");
@@ -136,12 +136,14 @@ public class Basketball extends Background
 		Stage cool = new Stage();
 	     
 	        stopButton.setOnAction(new EventHandler<ActionEvent>() 
-		{
+	        {
 	            @Override public void handle(ActionEvent event)
 	            {
 	            	barAnim.pause();
 	            	
-	            	percent = getPercent(ball.getTranslateX());
+	            	// percent = getPercent(ball.getTranslateX());
+	            	Bounds boundsInScene = ball.localToScene(ball.getBoundsInLocal());
+	            	percent = getPercent(boundsInScene);
 	            	
 	            	if(percent > 20)
 	            	{
@@ -165,7 +167,7 @@ public class Basketball extends Background
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
 	            	}
-	            	else
+	            	else if(percent < 20)
 	            	{
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
@@ -187,6 +189,9 @@ public class Basketball extends Background
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
 	            	}
+	            	
+	            	
+	          
 				
 	        
 	            	Stage primaryStage = new Stage();
@@ -196,18 +201,23 @@ public class Basketball extends Background
 	            		again.start(primaryStage);
 	            		
 	            	}
-	            	
-			}
-			}};
-	            	
-	       
+	            
+	        
+	   
+	      
+	       	
+	            }
+	            
+	        });
+	         
+	        Button tryAgain = new Button ("Try Again (Only Press Once)");
+	        
+	        
+	        tryAgain.setTranslateX(-400);
+			tryAgain.setTranslateY(300);
+			tryAgain.setMaxSize(300, 100);
 		
-	       Button tryAgain = new Button ("Try Again (Only Press Once)");
-	       tryAgain.setTranslateX(-400);
-	       tryAgain.setTranslateY(300);
-	       tryAgain.setMaxSize(300, 100);
-	       
-	        root.getChildren().add(tryAgain);
+			root.getChildren().add(tryAgain);
 	        count++;
         	if(count != 1)
         	{
@@ -221,12 +231,12 @@ public class Basketball extends Background
 	            	if(count > 0)
 	            	{
 		            	count--;
-		            	//tryAgain.setText("You Have " + count + " times remaining");
+		            	tryAgain.setText("You Have " + count + " times remaining");
 		            	
-		                baller.start(primaryStage);
+		                baller.start(cool);
 		                
 		                Stage stage = (Stage) tryAgain.getScene().getWindow();
-		                //stage.close();
+		                stage.close();
 	            	}
 	            }
 	        });
@@ -236,21 +246,18 @@ public class Basketball extends Background
 		//Disable maximize option on program
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 		
-
-	}
-	
-	/*
+		/*
 	 * @param -  location of the ball on the rectangle, 
 	 * this will determine overall chance of it being a make
 	 */
-	private int getPercent(double location)
+	private int getPercent(Bounds location)
 	{
 		int percent = 0;
-		if(location < 100 & location > 70)
+		if(location.contains(10,400))
 		{
 			percent += 25;
 			
-			if(location < 70 & location > 40)
+			if(location.contains(140,600))
 			{
 				percent += 30;
 				
@@ -264,6 +271,6 @@ public class Basketball extends Background
 		
 		return percent;
 	}
+	
 
-
-} 
+	}
