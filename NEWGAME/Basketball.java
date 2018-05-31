@@ -41,7 +41,9 @@ public class Basketball extends Background
 		Canvas canvas = new Canvas( 1700, 1000 );
 		root.getChildren().add( canvas );
 	
-		GraphicsContext gc = canvas.getGraphicsContext2D();
+		GraphicsContext gc = canvas.getGraphicsContext2D(); // Made to be used 
+															// for adding things
+															// like 
 
 		//Background Image
 		Image court = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
@@ -267,7 +269,7 @@ public class Basketball extends Background
 	/*	
 	 * @param -  location of the ball on the rectangle, 
 	 * this will determine overall chance of it being a make
-	 
+	 */
 	private int getPercent(Bounds location)
 	{
 		int percent = 0;
@@ -299,7 +301,7 @@ public class Basketball extends Background
 			percent += 40;
 		}
 		return percent;
-	}*/
+	}
 	
 
 	}
