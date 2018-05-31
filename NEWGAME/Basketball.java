@@ -21,7 +21,13 @@ import javafx.util.Duration;
 
 public class Basketball extends Background 
 {
-	
+	Rectangle rect1;
+	Rectangle rect2;
+	Rectangle rect3;
+	Rectangle rect4;
+	Rectangle rect5;
+	Rectangle rect6;
+	Rectangle rect7;
 	@Override
 
 	public void start(Stage primaryStage)  
@@ -49,48 +55,45 @@ public class Basketball extends Background
 		Image court = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
 		gc.drawImage(court, 0, 0);
 
-
-
-
 		//Bar For Arrow
-		Rectangle rect1 = new Rectangle(10, 20, 100, 50);
+		rect1 = new Rectangle(10, 20, 100, 50);
 		rect1.setFill(Color.BLUE);
 		rect1.setTranslateX(10);
 		rect1.setTranslateY(400);
 		root.getChildren().addAll(rect1);
 
 
-		Rectangle rect2 = new Rectangle(20, 20, 70, 50);
+		rect2 = new Rectangle(20, 20, 70, 50);
 		rect2.setFill(Color.RED);
 		rect2.setTranslateX(90);
 		rect2.setTranslateY(400);
 		root.getChildren().addAll(rect2);
 
-		Rectangle rect3 = new Rectangle(20, 20, 40, 50);
+		rect3 = new Rectangle(20, 20, 40, 50);
 		rect3.setFill(Color.ORANGE);
 		rect3.setTranslateX(140);
 		rect3.setTranslateY(400);
 		root.getChildren().addAll(rect3);
 
-		Rectangle rect4 = new Rectangle(20, 20, 24, 50);
+		rect4 = new Rectangle(20, 20, 24, 50);
 		rect4.setFill(Color.GREEN);
 		rect4.setTranslateX(165);
 		rect4.setTranslateY(400);
 		root.getChildren().addAll(rect4);
 
-		Rectangle rect5 = new Rectangle(20, 20, 40, 50);
+		rect5 = new Rectangle(20, 20, 40, 50);
 		rect5.setFill(Color.ORANGE);
 		rect5.setTranslateX(195);
 		rect5.setTranslateY(400);
 		root.getChildren().addAll(rect5);
 
-		Rectangle rect6 = new Rectangle(20, 20, 70, 50);
+		rect6 = new Rectangle(20, 20, 70, 50);
 		rect6.setFill(Color.RED);
 		rect6.setTranslateX(242);
 		rect6.setTranslateY(400);
 		root.getChildren().addAll(rect6);
 
-		Rectangle rect7 = new Rectangle(20, 20, 100, 50);
+		rect7 = new Rectangle(20, 20, 100, 50);
 		rect7.setFill(Color.BLUE);
 		rect7.setTranslateX(325);
 		rect7.setTranslateY(400);
@@ -143,42 +146,8 @@ public class Basketball extends Background
 	            	
 	            	Bounds boundsInScene = (ball2.getBoundsInParent());
 	            	
-	            	int percent = 0;
+	            	int percent = getPercent(boundsInScene);
 	            	
-	        		if(boundsInScene.intersects(rect1.getBoundsInParent()))
-	        		{
-	        			percent += 25;
-	        		}
-	        		
-	        		 if(boundsInScene.intersects(rect2.getBoundsInParent()))
-	        		{
-	        			percent += 30;
-	        		}
-	        		
-	        		 if(boundsInScene.intersects(rect3.getBoundsInParent()))
-	        		{
-	        			percent += 40;
-	        		}
-	        		
-	        		 if(boundsInScene.intersects(rect4.getBoundsInParent()))
-	        		{
-	        			percent += 50;
-	        		}
-	        		
-	        		 if(boundsInScene.intersects(rect5.getBoundsInParent()))
-	        		{
-	        			percent += 40;
-	        		}
-	            	
-	        		 if(boundsInScene.intersects(rect6.getBoundsInParent()))
-	        		{
-	        			 percent += 30;
-	        	    }
-	        		 
-	        		 if(boundsInScene.intersects(rect7.getBoundsInParent()))
-		        	{
-		        			 percent += 20;
-		            }
 	            	
 	        		 
 	        		  gc.setFill(Color.ORANGERED);
@@ -189,7 +158,7 @@ public class Basketball extends Background
 	        	        gc.fillText( "Score: " + percent, 1200, 90 );
 	        	        gc.strokeText( "Score: " + percent, 1200, 90 );
 	        	        
-	            	 if(percent <= 70)
+	            	 if(percent < 70)
 	            	{
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
@@ -270,37 +239,46 @@ public class Basketball extends Background
 	 * @param -  location of the ball on the rectangle, 
 	 * this will determine overall chance of it being a make
 	 */
-	private int getPercent(Bounds location)
+	private int getPercent(Bounds boundsInScene)
 	{
 		int percent = 0;
-		if(location.intersects(20, 20, 100, 50))
+		
+		if(boundsInScene.intersects(rect1.getBoundsInParent()))
 		{
 			percent += 25;
-		
-			
 		}
 		
-		else if(location.intersects(20, 20, 70, 50))
+		 if(boundsInScene.intersects(rect2.getBoundsInParent()))
 		{
 			percent += 30;
-			
 		}
 		
-		else if(location.intersects(20, 20, 40, 50))
+		 if(boundsInScene.intersects(rect3.getBoundsInParent()))
 		{
 			percent += 40;
 		}
 		
-		else if(location.intersects(20, 20, 24, 50))
+		 if(boundsInScene.intersects(rect4.getBoundsInParent()))
 		{
 			percent += 50;
 		}
 		
-		else if(location.intersects(20, 20, 40, 50))
+		 if(boundsInScene.intersects(rect5.getBoundsInParent()))
 		{
 			percent += 40;
 		}
-		return percent;
+    	
+		 if(boundsInScene.intersects(rect6.getBoundsInParent()))
+		{
+			 percent += 30;
+	    }
+		 
+		 if(boundsInScene.intersects(rect7.getBoundsInParent()))
+    	{
+    			 percent += 20;
+        }
+		 
+		 return percent;
 	}
 	
 
