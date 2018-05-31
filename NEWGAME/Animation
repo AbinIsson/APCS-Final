@@ -1,151 +1,340 @@
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.ClosePath;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.HLineTo;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
-import javafx.scene.shape.QuadCurveTo;
-import javafx.scene.shape.VLineTo;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
-public class Animation {
+public class Basketball extends Background 
+{
+	private int count = 0;
+	private int percent = 0; // Stores the percentage of chance for basket
+							//  from each turn of the player. 
+		
+	@Override
 
-	public static PathElement[] getRandomAnimation(int num)
+	public void start(Stage primaryStage)  
 	{
-		if(num == 1)
-		{
-			PathElement[] path1 = {new MoveTo(525, 770), //Initial start
+		//Animation  - Gets the ball image and sets location
+		ImageView bigBall = new ImageView();
+		bigBall.setImage(new Image("file:Ball.png",100, 100, false, false));
+		bigBall.setX(475);
+		bigBall.setY(600);
 
-					new QuadCurveTo(275,30,550,300), //Curve thing
-					new ClosePath() //Finished the path back to the start
-			};
+		StackPane root = new StackPane();
+		
 
-			return path1;
-		}
-		if(num == 2)
-		{
-			PathElement[] path2 = {new MoveTo(525, 770),
+		//Basic set up of Start Page
+		primaryStage.setScene(new Scene(root, 1700, 1000));
+		primaryStage.show();
+	
 
-					new LineTo(200,500),
-					new LineTo(350,250),
-					new LineTo(550,250),
-					new ClosePath()
+		//Basketball    
+		Canvas canvas = new Canvas( 1700, 1000 );
+		root.getChildren().add( canvas );
+	
+		
+		GraphicsContext gc = canvas.getGraphicsContext2D();
 
-			};
-			return path2;
-		}
-		if(num == 3)
-		{
-			PathElement[] path3 = {new MoveTo(525, 770),
-
-					new CubicCurveTo(525, 770, 1100, -100, 500, 300),
-
-					new ClosePath()
-
-			};
-			return path3;
-		}
-		if(num == 4)
-		{
-			PathElement[] path4 = {new MoveTo(525, 770),
-
-					new VLineTo(500),
-					new LineTo(725,500),
-					new ClosePath(),
-					new LineTo(200,500),
-					new ArcTo(200,500,30, 550, 100, false, false),
-
-					new ClosePath()
-
-			};
-			return path4;
-		}
-		if(num == 5)
-		{
-			PathElement[] path5 = {new MoveTo(525, 770),
-
-					new VLineTo(200),
-					new ClosePath()
-
-			};
-			return path5;
-		}
+		//Background Image
+		Image court = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
+		gc.drawImage(court, 0, 0);
 
 
-		return null;
 
 
+		//Bar For Arrow
+		Rectangle rect1 = new Rectangle(10, 20, 100, 50);
+		rect1.setFill(Color.BLUE);
+		rect1.setTranslateX(10);
+		rect1.setTranslateY(400);
+		root.getChildren().addAll(rect1);
+
+
+		Rectangle rect2 = new Rectangle(20, 20, 70, 50);
+		rect2.setFill(Color.RED);
+		rect2.setTranslateX(90);
+		rect2.setTranslateY(400);
+		root.getChildren().addAll(rect2);
+
+		Rectangle rect3 = new Rectangle(20, 20, 40, 50);
+		rect3.setFill(Color.ORANGE);
+		rect3.setTranslateX(140);
+		rect3.setTranslateY(400);
+		root.getChildren().addAll(rect3);
+
+		Rectangle rect4 = new Rectangle(20, 20, 24, 50);
+		rect4.setFill(Color.GREEN);
+		rect4.setTranslateX(165);
+		rect4.setTranslateY(400);
+		root.getChildren().addAll(rect4);
+
+		Rectangle rect5 = new Rectangle(20, 20, 40, 50);
+		rect5.setFill(Color.ORANGE);
+		rect5.setTranslateX(195);
+		rect5.setTranslateY(400);
+		root.getChildren().addAll(rect5);
+
+		Rectangle rect6 = new Rectangle(20, 20, 70, 50);
+		rect6.setFill(Color.RED);
+		rect6.setTranslateX(242);
+		rect6.setTranslateY(400);
+		root.getChildren().addAll(rect6);
+
+		Rectangle rect7 = new Rectangle(20, 20, 100, 50);
+		rect7.setFill(Color.BLUE);
+		rect7.setTranslateX(325);
+		rect7.setTranslateY(400);
+		root.getChildren().addAll(rect7);
+
+
+
+		ImageView ball2 = new ImageView(); 	//Ball on Bar
+		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
+        
+      		PathElement[] bar = Animation.bar();
+
+
+		//Adding location of the path for animation
+		Path road2 = new Path(); //Path of the bar
+		road2.setStroke(Color.TRANSPARENT); //Making the color invisible
+		road2.getElements().addAll(bar);
+	
+
+		PathTransition barAnim = new PathTransition();
+		barAnim.setNode(ball2);
+		barAnim.setPath(road2);
+		barAnim.setDuration(new Duration(1500));
+		barAnim.setRate(5f);
+		barAnim.setCycleCount(Timeline.INDEFINITE);
+		barAnim.play();
+		
+		root.getChildren().addAll(road2,ball2);
+	
+		
+		Button stopButton = new Button();
+		stopButton.setText("Stop!!!");
+		stopButton.setTranslateX(-400);
+		stopButton.setTranslateY(400);
+		stopButton.setMaxSize(300, 100);
+		
+		root.getChildren().add(stopButton);
+		
+	      
+		Stage cool = new Stage();
+	     
+	     	/*
+		 * Contains the commands after the stopbutton has been pressed
+		 */
+	        stopButton.setOnAction(new EventHandler<ActionEvent>() 
+	        {
+	            @Override public void handle(ActionEvent event)
+	            {
+	            	barAnim.pause();
+	            	
+	            	Bounds boundsInScene = (ball2.getBoundsInParent());
+	            	
+	            	int percent = 0;
+	        		if(boundsInScene.intersects(rect1.getBoundsInParent()))
+	        		{
+	        			percent += 25;
+	        		
+	        			
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect2.getBoundsInParent()))
+	        		{
+	        			percent += 30;
+	        			
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect3.getBoundsInParent()))
+	        		{
+	        			percent += 40;
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect4.getBoundsInParent()))
+	        		{
+	        			percent += 50;
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect5.getBoundsInParent()))
+	        		{
+	        			percent += 40;
+	        		}
+	            	
+	        		 if(boundsInScene.intersects(rect6.getBoundsInParent()))
+	        		{
+	        			 percent += 30;
+	        	    }
+	        		 
+	        		 if(boundsInScene.intersects(rect7.getBoundsInParent()))
+		        		{
+		        			 percent += 20;
+		        	    }
+	            	
+	        		 
+	        		  gc.setFill(Color.ORANGERED);
+	        	        gc.setStroke( Color.BLACK );
+	        	        gc.setLineWidth(3);
+	        	        Font theFont = Font.font( "Verdana", FontWeight.BOLD, 77 );
+	        	        gc.setFont( theFont );
+	        	        gc.fillText( "Score: " + percent, 1200, 90 );
+	        	        gc.strokeText( "Score: " + percent, 1200, 90 );
+	        	        
+	            	 if(percent <= 70)
+	            	{
+	            		//Getting a random path animation
+		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
+		            	 
+
+		        		//Adding location of the path for animation
+		        		Path road = new Path();
+		        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
+		        		road.getElements().addAll(path);
+
+		        		PathTransition anim = new PathTransition();
+		        		anim.setNode(bigBall);
+		        		anim.setPath(road);
+		        		anim.setDuration(new Duration(1500));
+		        		anim.setCycleCount(1);
+		        
+		        		root.getChildren().addAll(road,bigBall);
+		        		System.out.println(percent);
+		            	//PLAY ANIMATION COMMAND
+		        		anim.play();
+	            	}
+	            	 else if(percent >= 70)
+	            	{
+	            		//Getting a random path animation
+		            	PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
+		            	 
+
+		        		//Adding location of the path for animation
+		        		Path road = new Path();
+		        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
+		        		road.getElements().addAll(path);
+
+		        		PathTransition anim = new PathTransition();
+		        		anim.setNode(bigBall);
+		        		anim.setPath(road);
+		        		anim.setDuration(new Duration(1500));
+		        		anim.setCycleCount(1);
+		        		System.out.println(percent);
+		        		root.getChildren().addAll(road,bigBall);
+		        		
+		            	//PLAY ANIMATION COMMAND
+		        		anim.play();
+	            	}
+	            	
+	            	
+	            	
+	          
+				
+	        
+	            	Stage primaryStage = new Stage();
+	            	count++;
+	            	if(count != 2)
+	            	{
+	            		//again.start(primaryStage);
+	            		
+	            	}
+	            
+	        
+	   
+	      
+	       	
+	            }
+	            
+	        });
+	         
+	        Button tryAgain = new Button ("Try Again");
+	        
+	        
+	        tryAgain.setTranslateX(-400);
+			tryAgain.setTranslateY(300);
+			tryAgain.setMaxSize(300, 100);
+		
+			root.getChildren().add(tryAgain);
+	        count++;
+        	if(count != 1)
+        	{
+        		//again.start(cool);
+        		
+        	}
+	       Basketball baller = new Basketball();
+        	tryAgain.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override public void handle(ActionEvent event)
+	            {
+	            	if(count > 0)
+	            	{
+		            	count--;
+		            	tryAgain.setText("You Have " + count + " times remaining");
+		            	
+		                baller.start(primaryStage);
+		                
+		                Stage stage = (Stage) tryAgain.getScene().getWindow();
+		                //stage.close();
+	            	}
+	            }
+	        });
+	        
+	        
+
+		//Disable maximize option on program
+		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 	}
-
-	/*
-	 * Updated 
+		
+		/*
+	 * @param -  location of the ball on the rectangle, 
+	 * this will determine overall chance of it being a make
 	 */
-
-	public static PathElement[] bar()
+	private int getPercent(Bounds location)
 	{
-		PathElement[] path = {new MoveTo(185,420), //Start from green
-
-				new HLineTo(0),
-				new HLineTo(380),
-				new HLineTo(185)
-		};
-		return path;
+		int percent = 0;
+		if(location.intersects(20, 20, 100, 50))
+		{
+			percent += 25;
+		
+			
+		}
+		
+		else if(location.intersects(20, 20, 70, 50))
+		{
+			percent += 30;
+			
+		}
+		
+		else if(location.intersects(20, 20, 40, 50))
+		{
+			percent += 40;
+		}
+		
+		else if(location.intersects(20, 20, 24, 50))
+		{
+			percent += 50;
+		}
+		
+		else if(location.intersects(20, 20, 40, 50))
+		{
+			percent += 40;
+		}
+		return percent;
 	}
+	
 
-	public static PathElement[] getMissAnimation(int num)
-	{
-		if(num == 1)
-		{
-			PathElement[] miss1 = {new MoveTo(525, 770), //Initial start
-
-					new LineTo(570,200),
-					new LineTo(650,250),
-					new LineTo(700,350),
-					new LineTo(700,770)
-			};
-
-			return miss1;
-		}
-		if(num == 2)
-		{
-			PathElement[] miss2 = {new MoveTo(525, 770), //Initial start
-
-					new VLineTo(490),
-					new LineTo(300,250),
-					new ClosePath()
-			};
-
-			return miss2;
-		}
-
-		if(num == 3)
-		{
-			PathElement[] miss3 = {new MoveTo(525, 770), //Initial start
-
-					new VLineTo(550),
-					new LineTo(375,275),
-					new LineTo(525,200),
-					new LineTo(725,275),
-					new ClosePath()
-			};
-
-			return miss3;
-		}	
-		if(num == 4)
-		{
-			PathElement[] miss4 = {new MoveTo(525, 770), //Initial start
-
-
-					new LineTo(125,700),
-					new LineTo(420,200),
-					new LineTo(575,200),
-					new LineTo(1000,700),
-					new ClosePath()
-			};
-
-			return miss4;
-		}
-
-		return null;
 	}
-}
