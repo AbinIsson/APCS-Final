@@ -28,10 +28,10 @@ public class Basketball extends Background
 	public void start(Stage primaryStage)  
 	{
 		//Animation  - Gets the ball image and sets location
-		ImageView ball = new ImageView();
-		ball.setImage(new Image("file:Ball.png",100, 100, false, false));
-		ball.setX(475);
-		ball.setY(600);
+		ImageView bigBall = new ImageView();
+		bigBall.setImage(new Image("file:Ball.png",100, 100, false, false));
+		bigBall.setX(475);
+		bigBall.setY(600);
 
 		StackPane root = new StackPane();
 		
@@ -104,7 +104,7 @@ public class Basketball extends Background
 		ImageView ball2 = new ImageView(); 	//Ball on Bar
 		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
         
-        PathElement[] bar = Animation.bar();
+      		PathElement[] bar = Animation.bar();
 
 
 		//Adding location of the path for animation
@@ -131,18 +131,20 @@ public class Basketball extends Background
 		stopButton.setMaxSize(300, 100);
 		
 		root.getChildren().add(stopButton);
-		//TryAgain again = new TryAgain();
+		
 	      
 		Stage cool = new Stage();
 	     
+	     	/*
+		 * Contains the commands after the stopbutton has been pressed
+		 */
 	        stopButton.setOnAction(new EventHandler<ActionEvent>() 
 	        {
 	            @Override public void handle(ActionEvent event)
 	            {
 	            	barAnim.pause();
 	            	
-	            	// percent = getPercent(ball.getTranslateX());
-	            	Bounds boundsInScene = /*ball2.localToScene*/(ball2.getBoundsInParent());
+	            	Bounds boundsInScene = (ball2.getBoundsInParent());
 	            	
 	            	int percent = 0;
 	        		if(boundsInScene.intersects(rect1.getBoundsInParent()))
@@ -172,7 +174,6 @@ public class Basketball extends Background
 	        		{
 	        			percent += 40;
 	        		}
-	            //	percent = getPercent(boundsInScene);
 	            	
 	            	
 	            	 if(percent < 60)
@@ -187,12 +188,12 @@ public class Basketball extends Background
 		        		road.getElements().addAll(path);
 
 		        		PathTransition anim = new PathTransition();
-		        		anim.setNode(ball);
+		        		anim.setNode(bigBall);
 		        		anim.setPath(road);
 		        		anim.setDuration(new Duration(1500));
-		        		anim.setCycleCount(Timeline.INDEFINITE);
+		        		anim.setCycleCount(1);
 		        
-		        		root.getChildren().addAll(road,ball);
+		        		root.getChildren().addAll(road,bigBall);
 		        		System.out.println(percent);
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
@@ -209,38 +210,17 @@ public class Basketball extends Background
 		        		road.getElements().addAll(path);
 
 		        		PathTransition anim = new PathTransition();
-		        		anim.setNode(ball);
+		        		anim.setNode(bigBall);
 		        		anim.setPath(road);
 		        		anim.setDuration(new Duration(1500));
-		        		anim.setCycleCount(Timeline.INDEFINITE);
+		        		anim.setCycleCount(1);
 		        		System.out.println(percent);
-		        		root.getChildren().addAll(road,ball);
+		        		root.getChildren().addAll(road,bigBall);
 		        		
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
 	            	}
-	            	/*else if(ball2.intersects(rect1.getBoundsInLocal()))//percent < 20)
-	            	{
-	            		//Getting a random path animation
-		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
-		            	 
-
-		        		//Adding location of the path for animation
-		        		Path road = new Path();
-		        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
-		        		road.getElements().addAll(path);
-
-		        		PathTransition anim = new PathTransition();
-		        		anim.setNode(ball);
-		        		anim.setPath(road);
-		        		anim.setDuration(new Duration(1500));
-		        		anim.setCycleCount(Timeline.INDEFINITE);
-		        
-		        		root.getChildren().addAll(road,ball);
-		        		
-		            	//PLAY ANIMATION COMMAND
-		        		anim.play();
-	            	}*/
+	            	
 	            	
 	            	
 	          
