@@ -21,10 +21,7 @@ import javafx.util.Duration;
 
 public class Basketball extends Background 
 {
-	private int count = 0;
-	private int percent = 0; // Stores the percentage of chance for basket
-							//  from each turn of the player. 
-		
+	
 	@Override
 
 	public void start(Stage primaryStage)  
@@ -35,19 +32,15 @@ public class Basketball extends Background
 		bigBall.setX(475);
 		bigBall.setY(600);
 
-		StackPane root = new StackPane();
-		
-
 		//Basic set up of Start Page
+		StackPane root = new StackPane();
 		primaryStage.setScene(new Scene(root, 1700, 1000));
-		primaryStage.show();
-	
-
-		//Basketball    
+		primaryStage.show();  // Display the stage, currently empty
+		 					  // but will be filled graphics later
+		
 		Canvas canvas = new Canvas( 1700, 1000 );
 		root.getChildren().add( canvas );
 	
-		
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		//Background Image
@@ -114,7 +107,7 @@ public class Basketball extends Background
 		road2.setStroke(Color.TRANSPARENT); //Making the color invisible
 		road2.getElements().addAll(bar);
 	
-
+		//Setting the animation of the bar(arrow) 
 		PathTransition barAnim = new PathTransition();
 		barAnim.setNode(ball2);
 		barAnim.setPath(road2);
@@ -149,17 +142,15 @@ public class Basketball extends Background
 	            	Bounds boundsInScene = (ball2.getBoundsInParent());
 	            	
 	            	int percent = 0;
+	            	
 	        		if(boundsInScene.intersects(rect1.getBoundsInParent()))
 	        		{
 	        			percent += 25;
-	        		
-	        			
 	        		}
 	        		
 	        		 if(boundsInScene.intersects(rect2.getBoundsInParent()))
 	        		{
 	        			percent += 30;
-	        			
 	        		}
 	        		
 	        		 if(boundsInScene.intersects(rect3.getBoundsInParent()))
@@ -183,9 +174,9 @@ public class Basketball extends Background
 	        	    }
 	        		 
 	        		 if(boundsInScene.intersects(rect7.getBoundsInParent()))
-		        		{
+		        	{
 		        			 percent += 20;
-		        	    }
+		            }
 	            	
 	        		 
 	        		  gc.setFill(Color.ORANGERED);
@@ -240,24 +231,7 @@ public class Basketball extends Background
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
 	            	}
-	            	
-	            	
-	            	
-	          
-				
-	        
-	            	Stage primaryStage = new Stage();
-	            	count++;
-	            	if(count != 2)
-	            	{
-	            		//again.start(primaryStage);
-	            		
-	            	}
-	            
-	        
-	   
-	      
-	       	
+
 	            }
 	            
 	        });
@@ -270,26 +244,17 @@ public class Basketball extends Background
 			tryAgain.setMaxSize(300, 100);
 		
 			root.getChildren().add(tryAgain);
-	        count++;
-        	if(count != 1)
-        	{
-        		//again.start(cool);
-        		
-        	}
+	       
 	       Basketball baller = new Basketball();
         	tryAgain.setOnAction(new EventHandler<ActionEvent>() {
 	            @Override public void handle(ActionEvent event)
 	            {
-	            	if(count > 0)
-	            	{
-		            	count--;
-		            	tryAgain.setText("You Have " + count + " times remaining");
-		            	
+
 		                baller.start(primaryStage);
 		                
 		                Stage stage = (Stage) tryAgain.getScene().getWindow();
-		                //stage.close();
-	            	}
+		             
+	            	
 	            }
 	        });
 	        
@@ -299,10 +264,10 @@ public class Basketball extends Background
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 	}
 		
-		/*
+	/*	
 	 * @param -  location of the ball on the rectangle, 
 	 * this will determine overall chance of it being a make
-	 */
+	 
 	private int getPercent(Bounds location)
 	{
 		int percent = 0;
@@ -334,7 +299,7 @@ public class Basketball extends Background
 			percent += 40;
 		}
 		return percent;
-	}
+	}*/
 	
 
 	}
