@@ -285,8 +285,4 @@ public class Basketball extends Background
 	}
 	
 
-
-
-
-
 } 
