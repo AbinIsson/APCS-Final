@@ -163,7 +163,20 @@ public class Basketball extends Background
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
 		            	 
-
+		            	 Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
+		        	        gc.setFont( daFont );
+		            	 if(percent > 50)
+		            	{
+		            		gc.fillText( "So Close, Yet So Far", 1200, 190 );
+		            		gc.strokeText( "So Close, Yet So Far" , 1200, 190 );
+		            	}
+		            	 else if(percent <= 50)
+		            	{
+		            		gc.fillText( "Oof That was Ugly", 1200, 190 );
+		            		gc.strokeText( "Oof That was Ugly", 1200, 190 );
+		            	}
+		            	
+		            	
 		        		//Adding location of the path for animation
 		        		Path road = new Path();
 		        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
@@ -176,7 +189,7 @@ public class Basketball extends Background
 		        		anim.setCycleCount(1);
 		        
 		        		root.getChildren().addAll(road,bigBall);
-		        		System.out.println(percent);
+		        		
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
 	            	}
@@ -184,7 +197,18 @@ public class Basketball extends Background
 	            	{
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
-		            	 
+		            	Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
+	        	        gc.setFont( daFont );
+	            	 if(percent <= 110)
+	            	{
+	            		gc.fillText( "Ice In Your Veins", 1200, 190 );
+	            		gc.strokeText( "Ice In Your Veins" , 1200, 190 );
+	            	}
+	            	 else if(percent > 110)
+	            	{
+	            		gc.fillText( "Dang good shot", 1200, 190 );
+	            		gc.strokeText( "Dang good shot", 1200, 190 );
+	            	}
 
 		        		//Adding location of the path for animation
 		        		Path road = new Path();
@@ -196,7 +220,7 @@ public class Basketball extends Background
 		        		anim.setPath(road);
 		        		anim.setDuration(new Duration(1500));
 		        		anim.setCycleCount(1);
-		        		System.out.println(percent);
+		        		
 		        		root.getChildren().addAll(road,bigBall);
 		        		
 		            	//PLAY ANIMATION COMMAND
