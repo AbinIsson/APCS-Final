@@ -56,7 +56,7 @@ public class Basketball extends Background
 
 
 		//Bar For Arrow
-		Rectangle rect1 = new Rectangle(20, 20, 100, 50);
+		Rectangle rect1 = new Rectangle(10, 20, 100, 50);
 		rect1.setFill(Color.BLUE);
 		rect1.setTranslateX(10);
 		rect1.setTranslateY(400);
@@ -131,7 +131,7 @@ public class Basketball extends Background
 		stopButton.setMaxSize(300, 100);
 		
 		root.getChildren().add(stopButton);
-		TryAgain again = new TryAgain();
+		//TryAgain again = new TryAgain();
 	      
 		Stage cool = new Stage();
 	     
@@ -142,10 +142,62 @@ public class Basketball extends Background
 	            	barAnim.pause();
 	            	
 	            	// percent = getPercent(ball.getTranslateX());
-	            	Bounds boundsInScene = ball.localToScene(ball.getBoundsInLocal());
-	            	percent = getPercent(boundsInScene);
+	            	Bounds boundsInScene = /*ball2.localToScene*/(ball2.getBoundsInParent());
 	            	
-	            	if(percent > 20)
+	            	int percent = 0;
+	        		if(boundsInScene.intersects(rect1.getBoundsInParent()))
+	        		{
+	        			percent += 25;
+	        		
+	        			
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect2.getBoundsInParent()))
+	        		{
+	        			percent += 30;
+	        			
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect3.getBoundsInParent()))
+	        		{
+	        			percent += 40;
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect4.getBoundsInParent()))
+	        		{
+	        			percent += 50;
+	        		}
+	        		
+	        		 if(boundsInScene.intersects(rect5.getBoundsInParent()))
+	        		{
+	        			percent += 40;
+	        		}
+	            //	percent = getPercent(boundsInScene);
+	            	
+	            	
+	            	 if(percent < 60)
+	            	{
+	            		//Getting a random path animation
+		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
+		            	 
+
+		        		//Adding location of the path for animation
+		        		Path road = new Path();
+		        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
+		        		road.getElements().addAll(path);
+
+		        		PathTransition anim = new PathTransition();
+		        		anim.setNode(ball);
+		        		anim.setPath(road);
+		        		anim.setDuration(new Duration(1500));
+		        		anim.setCycleCount(Timeline.INDEFINITE);
+		        
+		        		root.getChildren().addAll(road,ball);
+		        		System.out.println(percent);
+		            	//PLAY ANIMATION COMMAND
+		        		anim.play();
+	            	}
+	            	 else if(percent > 60)
 	            	{
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
@@ -161,13 +213,13 @@ public class Basketball extends Background
 		        		anim.setPath(road);
 		        		anim.setDuration(new Duration(1500));
 		        		anim.setCycleCount(Timeline.INDEFINITE);
-		        
+		        		System.out.println(percent);
 		        		root.getChildren().addAll(road,ball);
 		        		
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
 	            	}
-	            	else if(percent < 20)
+	            	/*else if(ball2.intersects(rect1.getBoundsInLocal()))//percent < 20)
 	            	{
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
@@ -188,7 +240,7 @@ public class Basketball extends Background
 		        		
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
-	            	}
+	            	}*/
 	            	
 	            	
 	          
@@ -198,7 +250,7 @@ public class Basketball extends Background
 	            	count++;
 	            	if(count != 2)
 	            	{
-	            		again.start(primaryStage);
+	            		//again.start(primaryStage);
 	            		
 	            	}
 	            
@@ -210,7 +262,7 @@ public class Basketball extends Background
 	            
 	        });
 	         
-	        Button tryAgain = new Button ("Try Again (Only Press Once)");
+	        Button tryAgain = new Button ("Try Again");
 	        
 	        
 	        tryAgain.setTranslateX(-400);
@@ -221,7 +273,7 @@ public class Basketball extends Background
 	        count++;
         	if(count != 1)
         	{
-        		again.start(cool);
+        		//again.start(cool);
         		
         	}
 	       Basketball baller = new Basketball();
@@ -233,10 +285,10 @@ public class Basketball extends Background
 		            	count--;
 		            	tryAgain.setText("You Have " + count + " times remaining");
 		            	
-		                baller.start(cool);
+		                baller.start(primaryStage);
 		                
 		                Stage stage = (Stage) tryAgain.getScene().getWindow();
-		                stage.close();
+		                //stage.close();
 	            	}
 	            }
 	        });
@@ -245,6 +297,7 @@ public class Basketball extends Background
 
 		//Disable maximize option on program
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
+	}
 		
 		/*
 	 * @param -  location of the ball on the rectangle, 
@@ -253,22 +306,33 @@ public class Basketball extends Background
 	private int getPercent(Bounds location)
 	{
 		int percent = 0;
-		if(location.contains(10,400))
+		if(location.intersects(20, 20, 100, 50))
 		{
 			percent += 25;
-			
-			if(location.contains(140,600))
-			{
-				percent += 30;
-				
-				if(location < 40)
-				{
-					percent += 45;
-				}
-			}
+		
 			
 		}
 		
+		else if(location.intersects(20, 20, 70, 50))
+		{
+			percent += 30;
+			
+		}
+		
+		else if(location.intersects(20, 20, 40, 50))
+		{
+			percent += 40;
+		}
+		
+		else if(location.intersects(20, 20, 24, 50))
+		{
+			percent += 50;
+		}
+		
+		else if(location.intersects(20, 20, 40, 50))
+		{
+			percent += 40;
+		}
 		return percent;
 	}
 	
