@@ -14,6 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathElement;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -117,7 +119,7 @@ public class Basketball extends Background
 		barAnim.setNode(ball2);
 		barAnim.setPath(road2);
 		barAnim.setDuration(new Duration(1500));
-		barAnim.setRate(2.5f);
+		barAnim.setRate(5f);
 		barAnim.setCycleCount(Timeline.INDEFINITE);
 		barAnim.play();
 		
@@ -175,8 +177,26 @@ public class Basketball extends Background
 	        			percent += 40;
 	        		}
 	            	
+	        		 if(boundsInScene.intersects(rect6.getBoundsInParent()))
+	        		{
+	        			 percent += 30;
+	        	    }
+	        		 
+	        		 if(boundsInScene.intersects(rect7.getBoundsInParent()))
+		        		{
+		        			 percent += 20;
+		        	    }
 	            	
-	            	 if(percent < 60)
+	        		 
+	        		  gc.setFill(Color.ORANGERED);
+	        	        gc.setStroke( Color.BLACK );
+	        	        gc.setLineWidth(3);
+	        	        Font theFont = Font.font( "Verdana", FontWeight.BOLD, 77 );
+	        	        gc.setFont( theFont );
+	        	        gc.fillText( "Score: " + percent, 1200, 90 );
+	        	        gc.strokeText( "Score: " + percent, 1200, 90 );
+	        	        
+	            	 if(percent <= 70)
 	            	{
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
@@ -198,7 +218,7 @@ public class Basketball extends Background
 		            	//PLAY ANIMATION COMMAND
 		        		anim.play();
 	            	}
-	            	 else if(percent > 60)
+	            	 else if(percent >= 70)
 	            	{
 	            		//Getting a random path animation
 		            	PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
