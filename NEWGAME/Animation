@@ -133,7 +133,7 @@ public class Animation {
 		}	
 		if(num == 4)
 		{
-			PathElement[] miss4 = {new MoveTo(525, 770),t
+			PathElement[] miss4 = {new MoveTo(525, 770),
 
 
 					new LineTo(125,700),
