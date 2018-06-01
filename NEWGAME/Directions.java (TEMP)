@@ -87,15 +87,15 @@ public class Directions extends Background
         gc.fillText("5. You will have unlimited attempts \nto make as many shots as possible ", 1000, 290);
         gc.strokeText( "5. You will have unlimited attempts \nto make as many shots as possible", 1000, 290 );
         
-        gc.fillText("6. Green gives you an automatic make", 1000, 410);
-        gc.strokeText( "6. Green gives you an automatic make", 1000, 410 );
+        gc.fillText("6. Wait 5 seconds and then click try \nagain analyze what you can \nwork on, DONT RUSH IT", 1000, 410);
+        gc.strokeText( "6. Wait 5 seconds and then click try \nagain analyze what you can \nwork on, DONT RUSH IT", 1000, 410 );
     
-        gc.fillText("7. Orange has a slight chance of \nmaking but also a slight \nchance of missing", 1000, 490);
-        gc.strokeText( "7. Orange has a slight chance of \nmaking but also a slight \nchance of missing", 1000, 490 );
+        gc.fillText("7. Orange has a slight chance of \nmaking but also a slight \nchance of missing", 1000, 550);
+        gc.strokeText( "7. Orange has a slight chance of \nmaking but also a slight \nchance of missing", 1000, 550 );
         
         
-        gc.fillText("8. Red and Blue have a great \nchance of missing", 1000, 620);
-        gc.strokeText( "8. Red and Blue have a great \nchance of missing", 1000, 620 );
+        gc.fillText("8. Red and Blue have a great \nchance of missing", 1000, 690);
+        gc.strokeText( "8. Red and Blue have a great \nchance of missing", 1000, 690 );
         
         //Button to Go To Game
         primaryStage.setTitle("Ball On Stites");
