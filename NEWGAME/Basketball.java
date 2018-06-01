@@ -37,6 +37,7 @@ public class Basketball extends Background
 
 	public void start(Stage primaryStage)  
 	{
+		
 		//Animation  - Gets the ball image and sets location
 		ImageView bigBall = new ImageView();
 		bigBall.setImage(new Image("file:Ball.png",100, 100, false, false));
