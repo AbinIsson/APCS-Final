@@ -34,7 +34,7 @@ public class Directions extends Background
       
         
         //Background Image
-        Image ball = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
+        Image ball = new Image(ResourceLoader.load("Basketball Court.jpg"), 1700, 1000, false, false);
         gc.drawImage(ball, 0, 0);
         
        //Direction Page Layout
@@ -52,7 +52,7 @@ public class Directions extends Background
         gc.setFont(theFont);
         
         
-        //Overall Directions
+        /*//Overall Directions
         gc.fillText("1. Take turns for each question starting \nwith Player 1 and then Player 2  ", 470, 700);
         gc.strokeText( "1. Take turns for each question starting \nwith Player 1 and then Player 2", 470, 700 );
         
@@ -61,41 +61,41 @@ public class Directions extends Background
        
         gc.fillText("3. The less time you take to answer a \nquestion the more points you earn ", 470, 940);
         gc.strokeText( "3. The less time you take to answer a \nquestion the more points you earn ", 470, 940 );
-        
+        */
         
         //Directions For Player 1
-        gc.fillText( "Player 1", 160, 190 );
-        gc.strokeText( "Player 1", 160, 190 );
+        /*gc.fillText( "Player 1", 160, 190 );
+        gc.strokeText( "Player 1", 160, 190 );*/
         
-        gc.fillText("Q = Answer Choice A", 60, 290);
-        gc.strokeText( "Q = Answer Choice A", 60, 290 );
+        gc.fillText("1. Read The Directions", 60, 310);
+        gc.strokeText( "1. Read The Directions", 60, 310 );
         
-        gc.fillText("W = Answer Choice B", 60, 390);
-        gc.strokeText( "W = Answer Choice B", 60, 390 );
+        gc.fillText("2. Click the 'Stop' button to stop the \nbasketball on a specific color", 60, 390);
+        gc.strokeText( "2. Click the 'Stop' button to stop the \nbasketball on a specific color", 60, 390 );
         
-        gc.fillText("E = Answer Choice C", 60, 490);
-        gc.strokeText( "E = Answer Choice C", 60, 490 );
+        gc.fillText("3. The closer you are to green the higher \nyour chances are to make buckets", 60, 500);
+        gc.strokeText( "3. The closer you are to green the higher \nyour chances are to make buckets", 60, 500 );
         
-        gc.fillText("R = Answer Choice D", 60, 590);
-        gc.strokeText( "R = Answer Choice D", 60, 590 );
+        gc.fillText("4. You must score a 70 or \nhigher to make the shot ", 60, 600);
+        gc.strokeText( "4. You must score a 70 or \nhigher to make the shot ", 60, 600 );
         
         
         //Directions For Player 2
-        gc.fillText("Player 2", 1370, 190);
-        gc.strokeText( "Player 2", 1370, 190 );
+       /* gc.fillText("Player 2", 1370, 190);
+        gc.strokeText( "Player 2", 1370, 190 );*/
         
-        gc.fillText("U = Answer Choice A", 1270, 290);
-        gc.strokeText( "U = Answer Choice A", 1270, 290 );
+        gc.fillText("5. You will have unlimited attempts \nto make as many shots as possible ", 1000, 290);
+        gc.strokeText( "5. You will have unlimited attempts \nto make as many shots as possible", 1000, 290 );
         
-        gc.fillText("I = Answer Choice B", 1270, 390);
-        gc.strokeText( "I = Answer Choice B", 1270, 390 );
+        gc.fillText("6. Wait 5 seconds and then click try \nagain analyze what you can \nwork on, DONT RUSH IT", 1000, 410);
+        gc.strokeText( "6. Wait 5 seconds and then click try \nagain analyze what you can \nwork on, DONT RUSH IT", 1000, 410 );
     
-        gc.fillText("O = Answer Choice C", 1270, 490);
-        gc.strokeText( "O = Answer Choice C", 1270, 490 );
+        gc.fillText("7. Orange has a slight chance of \nmaking but also a slight \nchance of missing", 1000, 550);
+        gc.strokeText( "7. Orange has a slight chance of \nmaking but also a slight \nchance of missing", 1000, 550 );
         
         
-        gc.fillText("P = Answer Choice D", 1270, 590);
-        gc.strokeText( "P = Answer Choice D", 1270, 590 );
+        gc.fillText("8. Red and Blue have a great \nchance of missing", 1000, 690);
+        gc.strokeText( "8. Red and Blue have a great \nchance of missing", 1000, 690 );
         
         //Button to Go To Game
         primaryStage.setTitle("Ball On Stites");
