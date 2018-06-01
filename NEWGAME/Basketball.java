@@ -21,6 +21,8 @@ import javafx.util.Duration;
 
 public class Basketball extends Background 
 {
+	// The global variables below are used to create a complete slider which
+	// helps calculate the score for the player.
 	private Rectangle rect1;
 	private Rectangle rect2;
 	private Rectangle rect3;
@@ -28,8 +30,7 @@ public class Basketball extends Background
 	private Rectangle rect5;
 	private Rectangle rect6;
 	private Rectangle rect7;
-	
-	
+
 	
 	@Override
 
@@ -52,13 +53,20 @@ public class Basketball extends Background
 	
 		GraphicsContext gc = canvas.getGraphicsContext2D(); // Made to be used 
 															// for adding things
-															// like 
+															// like text, and color.
 
 		//Background Image
 		Image court = new Image("file:Basketball Court.jpg", 1700, 1000, false, false);
 		gc.drawImage(court, 0, 0);
+		
+		// This font is used throughout the game
+		Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
+		
 
-		//Bar For Arrow
+		/*
+		 * Below are the addition of all of the different colored 
+		 * rectangles that ends up creating the slider for the small ball.
+		 */
 		rect1 = new Rectangle(10, 20, 100, 50);
 		rect1.setFill(Color.BLUE);
 		rect1.setTranslateX(10);
@@ -103,155 +111,162 @@ public class Basketball extends Background
 		root.getChildren().addAll(rect7);
 
 
-
-		ImageView ball2 = new ImageView(); 	//Ball on Bar
+		// The addition of the small ball
+		ImageView ball2 = new ImageView(); 	
 		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
         
-      		PathElement[] bar = Animation.bar();
-
-
 		//Adding location of the path for animation
+      	PathElement[] bar = Animation.bar();
 		Path road2 = new Path(); //Path of the bar
-		road2.setStroke(Color.TRANSPARENT); //Making the color invisible
+		road2.setStroke(Color.TRANSPARENT); //Making the color invisible(Since its not practical)
 		road2.getElements().addAll(bar);
 	
-		//Setting the animation of the bar(arrow) 
+		//Setting the animation of the bar slider. 
 		PathTransition barAnim = new PathTransition();
 		barAnim.setNode(ball2);
 		barAnim.setPath(road2);
 		barAnim.setDuration(new Duration(1500));
-		barAnim.setRate(5f);
+		barAnim.setRate(5f);  // Changes how fast the ball moves on the bar
 		barAnim.setCycleCount(Timeline.INDEFINITE);
 		barAnim.play();
 		
 		root.getChildren().addAll(road2,ball2);
 	
-		
-		Button stopButton = new Button();
-		stopButton.setText("Stop!!!");
-		stopButton.setTranslateX(-400);
-		stopButton.setTranslateY(400);
-		stopButton.setMaxSize(300, 100);
-		
-		root.getChildren().add(stopButton);
-		
-	     /*
-		 * Contains the commands after the stopbutton has been pressed
-		 */
-	        stopButton.setOnAction(new EventHandler<ActionEvent>() 
-	        {
-	            @Override public void handle(ActionEvent event)
-	            {
-	            	barAnim.pause();
-	            	
-	            	Bounds boundsInScene = (ball2.getBoundsInParent());
-	            	
-	            	int percent = getPercent(boundsInScene);
-	            	
-	            	
-	        		 
-	        		  gc.setFill(Color.ORANGERED);
-	        	        gc.setStroke( Color.BLACK );
-	        	        gc.setLineWidth(3);
-	        	        Font theFont = Font.font( "Verdana", FontWeight.BOLD, 77 );
-	        	        gc.setFont( theFont );
-	        	        gc.fillText( "Score: " + percent, 1200, 90 );
-	        	        gc.strokeText( "Score: " + percent, 1200, 90 );
-	        	        
-	            	 if(percent < 70)
-	            	{
-	            		//Getting a random path animation
-		            	PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
-		            	 
-		            	 Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
-		        	        gc.setFont( daFont );
-		            	 if(percent > 50)
-		            	{
-		            		gc.fillText( "So Close, Yet So Far", 1200, 190 );
-		            		gc.strokeText( "So Close, Yet So Far" , 1200, 190 );
-		            	}
-		            	 else if(percent <= 50)
-		            	{
-		            		gc.fillText( "Oof That was Ugly", 1200, 190 );
-		            		gc.strokeText( "Oof That was Ugly", 1200, 190 );
-		            	}
-		            	
-		            	
-		        		//Adding location of the path for animation
-		        		Path road = new Path();
-		        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
-		        		road.getElements().addAll(path);
+			// The creation of the stop button
+			Button stopButton = new Button();
+			
+			stopButton.setFont(daFont);
+			stopButton.setText("Stop");
+			stopButton.setTranslateX(-400);
+			stopButton.setTranslateY(400);
+			stopButton.setMaxSize(300, 100);
 
-		        		PathTransition anim = new PathTransition();
-		        		anim.setNode(bigBall);
-		        		anim.setPath(road);
-		        		anim.setDuration(new Duration(1500));
-		        		anim.setCycleCount(1);
-		        
-		        		root.getChildren().addAll(road,bigBall);
-		        		
-		            	//PLAY ANIMATION COMMAND
-		        		anim.play();
-	            	}
-	            	 else if(percent >= 70)
-	            	{
-	            		//Getting a random path animation
-		            	PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
-		            	Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
-	        	        gc.setFont( daFont );
-	            	 if(percent <= 110)
-	            	{
-	            		gc.fillText( "Ice In Your Veins", 1200, 190 );
-	            		gc.strokeText( "Ice In Your Veins" , 1200, 190 );
-	            	}
-	            	 else if(percent > 110)
-	            	{
-	            		gc.fillText( "Dang good shot", 1200, 190 );
-	            		gc.strokeText( "Dang good shot", 1200, 190 );
-	            	}
+			root.getChildren().add(stopButton);
 
-		        		//Adding location of the path for animation
-		        		Path road = new Path();
-		        		road.setStroke(Color.TRANSPARENT); //Making the color invisible
-		        		road.getElements().addAll(path);
+			/*
+			 * Contains the commands after the stop-button has been pressed
+			 */
+			stopButton.setOnAction(new EventHandler<ActionEvent>() 
+			{
+				@Override public void handle(ActionEvent event)
+				{
+					barAnim.pause();
 
-		        		PathTransition anim = new PathTransition();
-		        		anim.setNode(bigBall);
-		        		anim.setPath(road);
-		        		anim.setDuration(new Duration(1500));
-		        		anim.setCycleCount(1);
-		        		
-		        		root.getChildren().addAll(road,bigBall);
-		        		
-		            	//PLAY ANIMATION COMMAND
-		        		anim.play();
-	            	}
+					Bounds boundsInScene = (ball2.getBoundsInParent());
+					
+					// This variable stores the chances of a make based
+					// on the location of the ball on the bar.
+					int percent = getPercent(boundsInScene);
+					
+					gc.setFill(Color.ORANGERED);
+					gc.setStroke( Color.BLACK );
+					gc.setLineWidth(3);
+					Font theFont = Font.font( "Verdana", FontWeight.BOLD, 77 );
+					gc.setFont( theFont );
+					gc.fillText( "Score: " + percent, 1200, 90 );
+					gc.strokeText( "Score: " + percent, 1200, 90 );
 
-	            }
-	            
-	        });
-	         
-	        Button tryAgain = new Button ("Try Again");
-	        
-	        
-	        tryAgain.setTranslateX(-400);
+					/*
+					 * Below are the conditions that determine the 
+					 * which animation to play, a miss animation or a make animation.
+					 */
+					if(percent < 70)  
+					{
+						//Getting a random path animation
+						PathElement[] path = Animation.getMissAnimation((int) (Math.random()*4+1));
+
+						Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
+						gc.setFont( daFont );
+						if(percent > 50)
+						{
+							gc.fillText( "So Close, Yet So Far", 1200, 190 );
+							gc.strokeText( "So Close, Yet So Far" , 1200, 190 );
+						}
+						else if(percent <= 50)
+						{
+							gc.fillText( "Oof That was Ugly", 1200, 190 );
+							gc.strokeText( "Oof That was Ugly", 1200, 190 );
+						}
+
+
+						//Adding location of the path for animation
+						Path road = new Path();
+						road.setStroke(Color.TRANSPARENT); //Making the color invisible(Since its not practical)
+						road.getElements().addAll(path);
+
+						PathTransition anim = new PathTransition();
+						anim.setNode(bigBall);
+						anim.setPath(road);
+						anim.setDuration(new Duration(1500));
+						anim.setCycleCount(1);
+
+						root.getChildren().addAll(road,bigBall);
+
+						//PLAY ANIMATION COMMAND
+						anim.play();
+					}
+					else if(percent >= 70)
+					{
+						//Getting a random path animation
+						PathElement[] path = Animation.getRandomAnimation((int) (Math.random()*5+1));
+						Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
+						gc.setFont( daFont );
+						if(percent <= 110)
+						{
+							gc.fillText( "Ice In Your Veins", 1200, 190 );
+							gc.strokeText( "Ice In Your Veins" , 1200, 190 );
+						}
+						else if(percent > 110)
+						{
+							gc.fillText( "Dang good shot", 1200, 190 );
+							gc.strokeText( "Dang good shot", 1200, 190 );
+						}
+
+						//Adding location of the path for animation
+						Path road = new Path();
+						road.setStroke(Color.TRANSPARENT); //Making the color invisible(Since its not practical)
+						road.getElements().addAll(path);
+
+						PathTransition anim = new PathTransition();
+						anim.setNode(bigBall);
+						anim.setPath(road);
+						anim.setDuration(new Duration(1500));
+						anim.setCycleCount(1);
+
+						root.getChildren().addAll(road,bigBall);
+
+						//PLAY ANIMATION COMMAND
+						anim.play();
+					}
+
+				}
+
+			});
+
+			Button tryAgain = new Button ("Try Again");
+			tryAgain.setFont(daFont);
+			tryAgain.setTranslateX(-400);
 			tryAgain.setTranslateY(300);
 			tryAgain.setMaxSize(300, 100);
-		
-			root.getChildren().add(tryAgain);
-	       
-	       Basketball baller = new Basketball();
-        	tryAgain.setOnAction(new EventHandler<ActionEvent>() {
-	            @Override public void handle(ActionEvent event)
-	            {
 
-		                baller.start(primaryStage);
-		                
-		                Stage stage = (Stage) tryAgain.getScene().getWindow();
-		             
-	            	
-	            }
-	        });
+			root.getChildren().add(tryAgain);
+
+			Basketball baller = new Basketball();
+			tryAgain.setOnAction(new EventHandler<ActionEvent>() {
+				@Override public void handle(ActionEvent event)
+				{
+
+					baller.start(primaryStage);
+
+					Stage stage = (Stage) tryAgain.getScene().getWindow();
+
+
+				}
+			});
+
+		
+		
+
 	        
 	        
 
@@ -259,6 +274,8 @@ public class Basketball extends Background
 		primaryStage.resizableProperty().setValue(Boolean.FALSE);
 	}
 		
+	
+	
 	/*	
 	 * @param -  location of the ball on the rectangle, 
 	 * this will determine overall chance of it being a make
