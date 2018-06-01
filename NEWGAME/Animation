@@ -12,12 +12,12 @@ public class Animation {
 
 	public static PathElement[] getRandomAnimation(int num)
 	{
-		if(num == 1)
+		if(num == 1)//Gets a random number and chooses that animation
 		{
-			PathElement[] path1 = {new MoveTo(525, 770), //Initial start
+			PathElement[] path1 = {new MoveTo(525, 770), //Creating an array with the Initial start
 
-					new QuadCurveTo(275,30,550,300), //Curve thing
-					new ClosePath() //Finished the path back to the start
+					new QuadCurveTo(275,30,550,300), //Different types of point
+					new ClosePath() //Finish the path back to the start
 			};
 
 			return path1;
@@ -81,22 +81,22 @@ public class Animation {
 	 * Updated 
 	 */
 
-	public static PathElement[] bar()
+	public static PathElement[] bar()	//Animation for the ball moving on the bar
 	{
 		PathElement[] path = {new MoveTo(185,420), //Start from green
 
-				new HLineTo(0),
-				new HLineTo(380),
-				new HLineTo(185)
+				new HLineTo(0), //Moves to the end on the left
+				new HLineTo(380),//Moves to the end on the right
+				new HLineTo(185)//Back to middle
 		};
 		return path;
 	}
 
-	public static PathElement[] getMissAnimation(int num)
+	public static PathElement[] getMissAnimation(int num)//Miss animation for ball
 	{
-		if(num == 1)
+		if(num == 1)//Returns a random animation
 		{
-			PathElement[] miss1 = {new MoveTo(525, 770), //Initial start
+			PathElement[] miss1 = {new MoveTo(525, 770), 
 
 					new LineTo(570,200),
 					new LineTo(650,250),
@@ -108,7 +108,7 @@ public class Animation {
 		}
 		if(num == 2)
 		{
-			PathElement[] miss2 = {new MoveTo(525, 770), //Initial start
+			PathElement[] miss2 = {new MoveTo(525, 770), 
 
 					new VLineTo(490),
 					new LineTo(300,250),
@@ -120,7 +120,7 @@ public class Animation {
 
 		if(num == 3)
 		{
-			PathElement[] miss3 = {new MoveTo(525, 770), //Initial start
+			PathElement[] miss3 = {new MoveTo(525, 770), 
 
 					new VLineTo(550),
 					new LineTo(375,275),
@@ -133,7 +133,7 @@ public class Animation {
 		}	
 		if(num == 4)
 		{
-			PathElement[] miss4 = {new MoveTo(525, 770), //Initial start
+			PathElement[] miss4 = {new MoveTo(525, 770),t
 
 
 					new LineTo(125,700),
