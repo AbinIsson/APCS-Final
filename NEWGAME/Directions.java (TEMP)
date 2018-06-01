@@ -18,11 +18,10 @@ public class Directions extends Background
     
     public void start(Stage primaryStage) 
     {
-    
+    	
+    	//Basic set up of Start Page
+    	
         StackPane root = new StackPane();
-        
-        Background back = new Background();
-      //Basic set up of Start Page
       
         primaryStage.setScene(new Scene(root, 1700, 1000));
         primaryStage.show();
@@ -51,38 +50,7 @@ public class Directions extends Background
         theFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
         gc.setFont(theFont);
         
-        
-        /*//Overall Directions
-        gc.fillText("1. Take turns for each question starting \nwith Player 1 and then Player 2  ", 470, 700);
-        gc.strokeText( "1. Take turns for each question starting \nwith Player 1 and then Player 2", 470, 700 );
-        
-        gc.fillText("2. Either click or highlight using the arrrows on the \nkeyboard and press the respective buttons shown \non the screen ", 470, 800);
-        gc.strokeText( "2. Either click or highlight using the arrrows on the \nkeyboard and press the respective buttons shown \non the screen", 470, 800 );
        
-        gc.fillText("3. The less time you take to answer a \nquestion the more points you earn ", 470, 940);
-        gc.strokeText( "3. The less time you take to answer a \nquestion the more points you earn ", 470, 940 );
-        */
-        
-        //Directions For Player 1
-        /*gc.fillText( "Player 1", 160, 190 );
-        gc.strokeText( "Player 1", 160, 190 );*/
-        
-        gc.fillText("1. Read The Directions", 60, 310);
-        gc.strokeText( "1. Read The Directions", 60, 310 );
-        
-        gc.fillText("2. Click the 'Stop' button to stop the \nbasketball on a specific color", 60, 390);
-        gc.strokeText( "2. Click the 'Stop' button to stop the \nbasketball on a specific color", 60, 390 );
-        
-        gc.fillText("3. The closer you are to green the higher \nyour chances are to make buckets", 60, 500);
-        gc.strokeText( "3. The closer you are to green the higher \nyour chances are to make buckets", 60, 500 );
-        
-        gc.fillText("4. You must score a 70 or \nhigher to make the shot ", 60, 600);
-        gc.strokeText( "4. You must score a 70 or \nhigher to make the shot ", 60, 600 );
-        
-        
-        //Directions For Player 2
-       /* gc.fillText("Player 2", 1370, 190);
-        gc.strokeText( "Player 2", 1370, 190 );*/
         
         gc.fillText("5. You will have unlimited attempts \nto make as many shots as possible ", 1000, 290);
         gc.strokeText( "5. You will have unlimited attempts \nto make as many shots as possible", 1000, 290 );
