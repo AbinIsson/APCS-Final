@@ -18,11 +18,11 @@ public class Directions extends Background
     
     public void start(Stage primaryStage) 
     {
-    
+    	
+
+        //Basic set up of Start Page
         StackPane root = new StackPane();
         
-        Background back = new Background();
-      //Basic set up of Start Page
       
         primaryStage.setScene(new Scene(root, 1700, 1000));
         primaryStage.show();
