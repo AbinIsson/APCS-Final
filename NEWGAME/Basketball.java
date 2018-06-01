@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Path;
@@ -61,7 +62,7 @@ public class Basketball extends Background
 		
 		// This font is used throughout the game
 		Font daFont = Font.font( "Verdana", FontWeight.BOLD, 32 );
-		
+
 
 		/*
 		 * Below are the addition of all of the different colored 
@@ -110,7 +111,25 @@ public class Basketball extends Background
 		rect7.setTranslateY(400);
 		root.getChildren().addAll(rect7);
 
-
+		// The portrait image of Mr.Stites
+		ImageView portrait = new ImageView();
+		portrait.setImage(new Image("file:stites.jpeg", 200, 250, false, false));
+		portrait.setTranslateX(-700);
+		portrait.setTranslateY(-360);
+		
+		String cssBordering = "-fx-border-color:white; \n" //#090a0c
+	            + "-fx-border-insets:3;\n"
+	            + "-fx-border-radius:100;\n"
+	            + "-fx-border-width:3.0";
+		HBox top = new HBox();
+		top.getChildren().add(portrait);
+		top.setStyle(cssBordering);
+		
+		Rectangle border = new Rectangle(220,275);
+		border.setFill(Color.WHITE);
+		border.setTranslateX(-700);
+		border.setTranslateY(-350);
+		
 		// The addition of the small ball
 		ImageView ball2 = new ImageView(); 	
 		ball2.setImage(new Image("file:Ball.png",40, 40, false, false));      
@@ -130,7 +149,7 @@ public class Basketball extends Background
 		barAnim.setCycleCount(Timeline.INDEFINITE);
 		barAnim.play();
 		
-		root.getChildren().addAll(road2,ball2);
+		root.getChildren().addAll(road2,ball2, border, portrait);
 	
 			// The creation of the stop button
 			Button stopButton = new Button();
@@ -242,7 +261,11 @@ public class Basketball extends Background
 				}
 
 			});
-
+			
+			/*
+			 *  This button is created so that the user would be 
+			 *  able to retry their attempt.
+			 */
 			Button tryAgain = new Button ("Try Again");
 			tryAgain.setFont(daFont);
 			tryAgain.setTranslateX(-400);
