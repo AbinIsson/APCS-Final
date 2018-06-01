@@ -18,18 +18,8 @@ public class TryAgain extends Basketball
     
     public void start(Stage primaryStage) 
     {
-    
+		// Basic set up of a start page
         StackPane root = new StackPane();
-        
-     //   btn.setOnAction(new EventHandler<ActionEvent>() {
- 
-           /* @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Start Game!");
-            }*/
-       // });
-        
-      //Basic set up of Start Page
       
         primaryStage.setScene(new Scene(root, 400, 400));
         primaryStage.show();
@@ -76,23 +66,10 @@ public class TryAgain extends Basketball
             	btn.setText("You Have " + count + " times remaining");
             	if(count >= 0)
                 baller.start(primaryStage);
-                /*Stage stage = (Stage) btn.getScene().getWindow();
-                stage.close();*/
+        
             }
         });
         
-      //Play Song
-     
-        //playAudio();
-        
-       
-        
-        
-        
-       /* ImageView iv = new ImageView();
-        iv.setImage(image);
-        
-       root.getChildren().add(iv);*/
         primaryStage.show();
     
     }
